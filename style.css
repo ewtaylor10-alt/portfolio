@@ -4,21 +4,33 @@ body {
     color: white;
     overflow: hidden;
 
-    /* NICE BLUE GRADIENT BACK */
     background: linear-gradient(135deg, #003bff, #82beff);
 }
 
-/* SMOOTH BLUR LAYER */
-body::before {
-    content: "";
+/* LOADER */
+#loader {
     position: fixed;
     width: 100%;
     height: 100%;
+    background: #001133;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
 
-    backdrop-filter: blur(40px);
-    background: rgba(0, 30, 100, 0.4);
+.loader-circle {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #82beff;
+    border-top: 4px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
 
-    z-index: -1;
+@keyframes spin {
+    100% { transform: rotate(360deg); }
 }
 
 /* HERO */
@@ -27,23 +39,12 @@ body::before {
     margin-top: 150px;
 }
 
-.hero h2 {
-    font-size: 60px;
-    font-family: 'Orbitron';
-}
-
-/* GLOW TEXT */
 .glow {
-    background: linear-gradient(90deg, #ffffff, #82beff);
+    font-family: 'Orbitron';
+    font-size: 60px;
+    background: linear-gradient(90deg, #fff, #82beff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-
-    animation: glowPulse 2s infinite alternate;
-}
-
-@keyframes glowPulse {
-    from { text-shadow: 0 0 10px #82beff; }
-    to { text-shadow: 0 0 30px #003bff; }
 }
 
 /* PLAYER */
@@ -51,85 +52,98 @@ body::before {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 260px;
+    width: 280px;
 
-    background: rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.15);
     padding: 15px;
     border-radius: 20px;
 
     backdrop-filter: blur(20px);
-    box-shadow: 0 0 30px rgba(0,59,255,0.6);
+    box-shadow: 0 0 40px rgba(0,59,255,0.6);
 }
 
-/* COVER IMAGE */
-.cover {
-    width: 100%;
-    border-radius: 12px;
-    margin-bottom: 10px;
-}
-
-/* SONG NAME */
-#songName {
-    font-size: 14px;
-    margin-bottom: 10px;
-    color: #cce6ff;
-}
-
-/* BUTTONS */
-.controls {
+/* NOW PLAYING */
+.now-playing {
     display: flex;
-    justify-content: center;
     gap: 10px;
+    align-items: center;
 }
 
-.controls button {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    border: none;
-
-    background: linear-gradient(135deg, #003bff, #82beff);
-    color: white;
-    cursor: pointer;
-
-    transition: 0.2s;
+.cover {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
 }
 
-.controls button:hover {
-    transform: scale(1.1);
+.song-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.artist {
+    font-size: 12px;
+    opacity: 0.6;
+}
+
+/* WAVE */
+#waveform {
+    width: 100%;
+    height: 60px;
 }
 
 /* PROGRESS */
 .progress-container {
-    width: 100%;
     height: 5px;
-    background: rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.3);
     border-radius: 10px;
-    margin: 10px 0;
 }
 
 #progress {
     height: 100%;
     width: 0%;
-    background: linear-gradient(90deg, #003bff, #82beff);
+    background: #003bff;
 }
 
-/* CURSOR */
-.cursor-glow {
-    position: fixed;
-    width: 35px;
-    height: 35px;
-    border: 2px solid #82beff;
+/* BUTTONS */
+.controls {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.controls button {
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
-    box-shadow: 0 0 10px #003bff, 0 0 20px #82beff;
-    pointer-events: none;
-    transform: translate(-50%, -50%);
+    border: none;
+
+    background: rgba(255,255,255,0.2);
+    color: white;
+
+    transition: 0.2s;
 }
 
-/* PARTICLES */
-#particles {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    z-index: -2;
+.controls button:hover {
+    background: #003bff;
+    transform: scale(1.1);
 }
+
+/* ACCENTS */
+.line {
+    position: fixed;
+    width: 200px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #82beff, transparent);
+}
+
+.l1 { top: 200px; left: 50px; }
+.l2 { bottom: 200px; right: 50px; }
+
+.bubble {
+    position: fixed;
+    border-radius: 50%;
+    background: rgba(130,190,255,0.1);
+}
+
+.b1 { width: 120px; height: 120px; top: 300px; left: 200px; }
+.b2 { width: 80px; height: 80px; bottom: 200px; right: 200px; }
