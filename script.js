@@ -9,116 +9,102 @@ const songs = [
 "The Kid LAROI - NIGHTS LIKE THIS (lyrics).mp3"
 ];
 
-let i = Math.floor(Math.random()*songs.length);
+let index = Math.floor(Math.random()*songs.length);
+let isShuffle = true;
 
 const audio = document.getElementById("audio");
 const name = document.getElementById("songName");
 const progress = document.getElementById("progress");
-const btn = document.getElementById("playBtn");
-const player = document.getElementById("player");
+
+const playBtn = document.getElementById("playBtn");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const shuffleBtn = document.getElementById("shuffleBtn");
 const volume = document.getElementById("volume");
 
-/* LOAD */
-function loadSong(){
-    audio.src = songs[i];
-    name.innerText = songs[i].replace(".mp3","");
+/* LOAD SONG */
+function loadSong() {
+    audio.src = songs[index];
+    name.innerText = songs[index].replace(".mp3","");
 }
 
 /* PLAY */
-function play(){
+function playSong() {
     audio.play();
-    btn.innerText="⏸";
-}
-function toggleMusic(){
-    if(audio.paused) play();
-    else{
-        audio.pause();
-        btn.innerText="▶";
-    }
+    playBtn.innerText = "⏸";
 }
 
-/* NEXT / PREV */
-function nextSong(){
-    i = Math.floor(Math.random()*songs.length);
-    loadSong(); play();
+/* PAUSE */
+function pauseSong() {
+    audio.pause();
+    playBtn.innerText = "▶";
 }
-function prevSong(){
-    i = (i-1+songs.length)%songs.length;
-    loadSong(); play();
-}
-function shuffleToggle(){}
 
-/* PROGRESS */
-audio.addEventListener("timeupdate",()=>{
-    if(audio.duration){
-        progress.style.width=(audio.currentTime/audio.duration)*100+"%";
-    }
-});
-
-/* VOLUME */
-volume.addEventListener("input",()=>{
-    audio.volume = volume.value;
-});
-
-/* AUTOPLAY FIX */
-document.addEventListener("click",()=>play(),{once:true});
-
-/* LOAD */
-window.onload=()=>{
-    loadSong();
-    setTimeout(()=>{
-        document.getElementById("loader").style.display="none";
-    },1000);
+/* TOGGLE */
+playBtn.onclick = () => {
+    if (audio.paused) playSong();
+    else pauseSong();
 };
 
-/* CURSOR */
-const cursor=document.getElementById("cursor");
-let mx=0,my=0,cx=0,cy=0;
+/* NEXT */
+nextBtn.onclick = () => {
+    if (isShuffle) {
+        index = Math.floor(Math.random()*songs.length);
+    } else {
+        index = (index + 1) % songs.length;
+    }
+    loadSong();
+    playSong();
+};
 
-document.addEventListener("mousemove",e=>{
-    mx=e.clientX;
-    my=e.clientY;
+/* PREV */
+prevBtn.onclick = () => {
+    index = (index - 1 + songs.length) % songs.length;
+    loadSong();
+    playSong();
+};
 
-    const p=document.createElement("div");
-    p.className="particle";
-    p.style.left=e.clientX+"px";
-    p.style.top=e.clientY+"px";
-    document.body.appendChild(p);
-    setTimeout(()=>p.remove(),300);
+/* SHUFFLE */
+shuffleBtn.onclick = () => {
+    isShuffle = !isShuffle;
+    shuffleBtn.style.opacity = isShuffle ? "1" : "0.5";
+};
+
+/* PROGRESS */
+audio.addEventListener("timeupdate", () => {
+    if (audio.duration) {
+        progress.style.width =
+            (audio.currentTime / audio.duration) * 100 + "%";
+    }
 });
 
-function animate(){
-    cx+=(mx-cx)*0.2;
-    cy+=(my-cy)*0.2;
-    cursor.style.left=cx+"px";
-    cursor.style.top=cy+"px";
-    requestAnimationFrame(animate);
-}
-animate();
+/* CLICK TO SEEK */
+document.querySelector(".progress-bar").onclick = (e) => {
+    const width = e.currentTarget.clientWidth;
+    const clickX = e.offsetX;
+    audio.currentTime = (clickX / width) * audio.duration;
+};
 
-/* WAVE + BEAT SYNC */
-const c=document.getElementById("wave");
-const ctx=c.getContext("2d");
-c.width=280; c.height=60;
+/* VOLUME */
+volume.oninput = () => {
+    audio.volume = volume.value;
+};
 
-function draw(){
-    ctx.clearRect(0,0,280,60);
+/* AUTO NEXT */
+audio.onended = () => {
+    nextBtn.click();
+};
 
-    let energy = Math.sin(Date.now()/150);
+/* LOAD + FIX AUTOPLAY */
+window.onload = () => {
+    loadSong();
 
-    for(let j=0;j<25;j++){
-        let h = audio.paused ? 8 : (Math.sin(Date.now()/200 + j)*15+20);
-        ctx.fillStyle="white";
-        ctx.fillRect(j*10,60-h,6,h);
-    }
+    setTimeout(() => {
+        document.getElementById("loader").style.display = "none";
+    }, 800);
+};
 
-    /* BEAT GLOW */
-    if(!audio.paused && energy > 0.8){
-        player.classList.add("beat");
-    } else {
-        player.classList.remove("beat");
-    }
-
-    requestAnimationFrame(draw);
-}
-draw();
+/* REQUIRED USER CLICK FOR SOUND */
+document.body.addEventListener("click", () => {
+    if (audio.paused) playSong();
+}, { once: true });
