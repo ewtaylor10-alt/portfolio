@@ -2,11 +2,14 @@ body {
     margin: 0;
     font-family: Inter;
     color: white;
+
     background:
-        linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85)),
+        linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.9)),
         url("6d734603-56e5-4f46-83e4-88f0aad1c974.png");
+
     background-size: cover;
     background-position: center;
+    overflow: hidden;
 }
 
 /* LOADER */
@@ -19,8 +22,21 @@ body {
     align-items: center;
     justify-content: center;
     font-family: Orbitron;
-    font-size: 20px;
     z-index: 999;
+}
+
+/* MOUSE GLOW */
+#cursorGlow {
+    position: fixed;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    pointer-events: none;
+
+    background: radial-gradient(circle, rgba(255,255,255,0.15), transparent);
+    filter: blur(25px);
+
+    transform: translate(-50%, -50%);
 }
 
 /* HERO */
@@ -32,34 +48,45 @@ body {
 .glow {
     font-family: Orbitron;
     font-size: 50px;
-    text-shadow: 0 0 15px white;
+    text-shadow: 0 0 20px white;
 }
 
-/* PLAYER */
+/* PLAYER GLASS */
 .player {
     position: fixed;
     bottom: 20px;
     right: 20px;
     width: 300px;
 
-    background: rgba(0,0,0,0.7);
-    backdrop-filter: blur(15px);
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
 
-    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+
     padding: 15px;
 
-    box-shadow: 0 0 20px rgba(255,255,255,0.2);
+    box-shadow: 0 0 30px rgba(255,255,255,0.15);
+
+    transition: 0.3s;
 }
 
-/* FIX BUTTON CLICK ISSUE */
-.player * {
-    pointer-events: auto;
+/* FLOAT HOVER */
+.player:hover {
+    transform: translateY(-6px) scale(1.02);
 }
 
 /* BANNER */
 .banner {
     width: 100%;
-    border-radius: 10px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+}
+
+/* TEXT */
+.song-info {
+    font-weight: 500;
     margin-bottom: 10px;
 }
 
@@ -67,7 +94,8 @@ body {
 .progress-bar {
     height: 4px;
     background: rgba(255,255,255,0.2);
-    margin: 10px 0;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 #progress {
@@ -80,6 +108,7 @@ body {
 .controls {
     display: flex;
     justify-content: space-between;
+    margin-top: 12px;
 }
 
 .controls button {
@@ -89,26 +118,29 @@ body {
     border: none;
     cursor: pointer;
 
-    background: rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.08);
     color: white;
 
-    transition: 0.2s;
+    transition: 0.25s;
 }
 
 .controls button:hover {
     background: white;
     color: black;
+    transform: scale(1.1);
 }
 
-/* VOLUME */
+/* VOLUME FIX (WHITE) */
 #volume {
     width: 100%;
     margin-top: 10px;
+    appearance: none;
     height: 4px;
     background: rgba(255,255,255,0.3);
 }
 
 #volume::-webkit-slider-thumb {
+    appearance: none;
     width: 12px;
     height: 12px;
     background: white;
