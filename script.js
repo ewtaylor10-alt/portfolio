@@ -10,16 +10,18 @@ const songs = [
 ];
 
 let i = Math.floor(Math.random()*songs.length);
+
 const audio = document.getElementById("audio");
 const name = document.getElementById("songName");
 const progress = document.getElementById("progress");
 const btn = document.getElementById("playBtn");
+const player = document.getElementById("player");
 const volume = document.getElementById("volume");
 
 /* LOAD */
 function loadSong(){
     audio.src = songs[i];
-    name.innerText = songs[i].split(" - ")[1] || songs[i];
+    name.innerText = songs[i].replace(".mp3","");
 }
 
 /* PLAY */
@@ -44,11 +46,12 @@ function prevSong(){
     i = (i-1+songs.length)%songs.length;
     loadSong(); play();
 }
+function shuffleToggle(){}
 
 /* PROGRESS */
 audio.addEventListener("timeupdate",()=>{
     if(audio.duration){
-        progress.style.width = (audio.currentTime/audio.duration)*100+"%";
+        progress.style.width=(audio.currentTime/audio.duration)*100+"%";
     }
 });
 
@@ -65,10 +68,10 @@ window.onload=()=>{
     loadSong();
     setTimeout(()=>{
         document.getElementById("loader").style.display="none";
-    },1200);
+    },1000);
 };
 
-/* CURSOR SMOOTH */
+/* CURSOR */
 const cursor=document.getElementById("cursor");
 let mx=0,my=0,cx=0,cy=0;
 
@@ -85,17 +88,15 @@ document.addEventListener("mousemove",e=>{
 });
 
 function animate(){
-    cx += (mx-cx)*0.2;
-    cy += (my-cy)*0.2;
-
+    cx+=(mx-cx)*0.2;
+    cy+=(my-cy)*0.2;
     cursor.style.left=cx+"px";
     cursor.style.top=cy+"px";
-
     requestAnimationFrame(animate);
 }
 animate();
 
-/* WAVE */
+/* WAVE + BEAT SYNC */
 const c=document.getElementById("wave");
 const ctx=c.getContext("2d");
 c.width=280; c.height=60;
@@ -103,10 +104,19 @@ c.width=280; c.height=60;
 function draw(){
     ctx.clearRect(0,0,280,60);
 
+    let energy = Math.sin(Date.now()/150);
+
     for(let j=0;j<25;j++){
         let h = audio.paused ? 8 : (Math.sin(Date.now()/200 + j)*15+20);
         ctx.fillStyle="white";
         ctx.fillRect(j*10,60-h,6,h);
+    }
+
+    /* BEAT GLOW */
+    if(!audio.paused && energy > 0.8){
+        player.classList.add("beat");
+    } else {
+        player.classList.remove("beat");
     }
 
     requestAnimationFrame(draw);
