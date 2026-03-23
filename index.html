@@ -4,24 +4,27 @@
 <meta charset="UTF-8">
 <title>hnguyguys' portfolio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <!-- LOADER -->
 <div id="loader">
-    <div class="loader-circle"></div>
-    <p>Loading...</p>
+    <div class="loader-ring"></div>
+    <h2>INITIALIZING SYSTEM</h2>
 </div>
 
-<!-- GRID BACKGROUND -->
-<div class="grid"></div>
+<!-- PARALLAX BG -->
+<div class="parallax">
+    <div class="stars"></div>
+    <div class="grid"></div>
+</div>
 
 <!-- HERO -->
 <div class="hero">
     <h1>WELCOME TO</h1>
-    <h2 class="glow-text">hnguyguys' Portfolio</h2>
+    <h2 class="glow">hnguyguys' Portfolio</h2>
     <p>Clean systems. Creative design. Digital energy.</p>
 </div>
 
@@ -32,14 +35,13 @@
         <img src="c0bba8165dbb9982fa17e300d66f8264.jpg">
     </div>
 
-    <div class="song-info">
-        <div id="songName">Loading...</div>
-        <div class="artist">Now Playing</div>
+    <div class="song">
+        <span id="songName">Loading...</span>
     </div>
 
-    <canvas id="waveform"></canvas>
+    <canvas id="wave"></canvas>
 
-    <div class="progress-container">
+    <div class="progress-bar">
         <div id="progress"></div>
     </div>
 
@@ -50,12 +52,10 @@
         <button onclick="shuffleToggle()">🔀</button>
     </div>
 
-    <input type="range" id="volume" min="0" max="1" step="0.01">
 </div>
 
-<audio id="bgMusic"></audio>
+<audio id="audio"></audio>
 
-<!-- CURSOR -->
 <div id="cursor"></div>
 
 <script src="script.js"></script>
