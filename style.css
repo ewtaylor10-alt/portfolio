@@ -2,12 +2,9 @@ body {
     margin: 0;
     font-family: Inter;
     color: white;
-    overflow: hidden;
-
     background:
-        linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)),
+        linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85)),
         url("6d734603-56e5-4f46-83e4-88f0aad1c974.png");
-
     background-size: cover;
     background-position: center;
 }
@@ -19,22 +16,11 @@ body {
     height: 100%;
     background: black;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    font-family: Orbitron;
+    font-size: 20px;
     z-index: 999;
-}
-
-.loader-ring {
-    width: 60px;
-    height: 60px;
-    border: 3px solid white;
-    border-top: 3px solid transparent;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    100% { transform: rotate(360deg); }
 }
 
 /* HERO */
@@ -45,8 +31,8 @@ body {
 
 .glow {
     font-family: Orbitron;
-    font-size: 60px;
-    text-shadow: 0 0 20px white;
+    font-size: 50px;
+    text-shadow: 0 0 15px white;
 }
 
 /* PLAYER */
@@ -57,44 +43,40 @@ body {
     width: 300px;
 
     background: rgba(0,0,0,0.7);
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(15px);
 
-    border-radius: 20px;
+    border-radius: 16px;
     padding: 15px;
 
-    transition: 0.3s;
-
-    box-shadow:
-        0 0 20px rgba(255,255,255,0.2);
+    box-shadow: 0 0 20px rgba(255,255,255,0.2);
 }
 
-/* FLOAT EFFECT */
-.player:hover {
-    transform: translateY(-10px) scale(1.03);
-    box-shadow:
-        0 0 40px rgba(255,255,255,0.4);
+/* FIX BUTTON CLICK ISSUE */
+.player * {
+    pointer-events: auto;
 }
 
 /* BANNER */
 .banner {
     width: 100%;
     border-radius: 10px;
-    filter: grayscale(1);
+    margin-bottom: 10px;
 }
 
 /* PROGRESS */
 .progress-bar {
-    height: 5px;
+    height: 4px;
     background: rgba(255,255,255,0.2);
     margin: 10px 0;
 }
+
 #progress {
     height: 100%;
     width: 0%;
     background: white;
 }
 
-/* CONTROLS */
+/* BUTTONS */
 .controls {
     display: flex;
     justify-content: space-between;
@@ -105,8 +87,12 @@ body {
     height: 42px;
     border-radius: 50%;
     border: none;
+    cursor: pointer;
+
     background: rgba(255,255,255,0.1);
     color: white;
+
+    transition: 0.2s;
 }
 
 .controls button:hover {
@@ -118,40 +104,14 @@ body {
 #volume {
     width: 100%;
     margin-top: 10px;
-    appearance: none;
     height: 4px;
     background: rgba(255,255,255,0.3);
 }
 
 #volume::-webkit-slider-thumb {
-    appearance: none;
     width: 12px;
     height: 12px;
     background: white;
     border-radius: 50%;
-}
-
-/* CURSOR */
-#cursor {
-    position: fixed;
-    width: 18px;
-    height: 18px;
-    border: 2px solid white;
-    border-radius: 50%;
-    pointer-events: none;
-}
-
-/* PARTICLES */
-.particle {
-    position: fixed;
-    width: 4px;
-    height: 4px;
-    background: white;
-    border-radius: 50%;
-}
-
-/* BEAT GLOW */
-.player.beat {
-    box-shadow:
-        0 0 60px rgba(255,255,255,0.6);
+    cursor: pointer;
 }
