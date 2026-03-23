@@ -1,61 +1,105 @@
 body {
     margin: 0;
-    font-family: Arial;
+    font-family: 'Inter', sans-serif;
     color: white;
-    overflow-x: hidden;
+    overflow: hidden;
 
-    /* 🔥 BACKGROUND BLEND */
-    background: linear-gradient(135deg, #000814, #001d66, #003bff);
+    background: url("https://files.catbox.moe/7m1y7u.jpg") center/cover no-repeat;
 }
 
-/* subtle background glow image */
+/* LOADER */
+#loader {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #000814;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+
+    animation: fadeOut 1s ease forwards;
+    animation-delay: 2s;
+}
+
+.loader-text {
+    font-family: 'Orbitron';
+    color: #82beff;
+    font-size: 20px;
+    animation: pulse 1s infinite alternate;
+}
+
+@keyframes fadeOut {
+    to { opacity: 0; visibility: hidden; }
+}
+
+@keyframes pulse {
+    from { opacity: 0.5; }
+    to { opacity: 1; }
+}
+
+/* BLUR */
 body::before {
     content: "";
     position: fixed;
     width: 100%;
     height: 100%;
-    background: url("https://i.pinimg.com/736x/7b/f5/41/7bf54150f1d216e9f64de42e3150a76a.jpg") center/cover;
-    opacity: 0.08;
-    filter: blur(40px);
+    backdrop-filter: blur(30px);
+    background: rgba(0, 20, 60, 0.6);
     z-index: -1;
 }
 
 /* NAVBAR */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 40px;
-    background: rgba(0, 59, 255, 0.15);
-    backdrop-filter: blur(15px);
-    border-radius: 20px;
+    padding: 20px;
     margin: 20px;
+    border-radius: 20px;
+    background: rgba(0,59,255,0.2);
+    backdrop-filter: blur(10px);
+
+    animation: slideDown 1s ease;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
 
 .logo {
-    font-weight: bold;
+    font-family: 'Orbitron';
     color: #82beff;
 }
 
 /* HERO */
 .hero {
     text-align: center;
-    margin-top: 120px;
+    margin-top: 150px;
+
+    animation: fadeIn 1.5s ease;
 }
 
-.small-title {
-    color: #aaa;
-    letter-spacing: 4px;
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
-.main-title {
-    font-size: 65px;
+.hero h2 {
+    font-size: 60px;
+    font-family: 'Orbitron';
+}
+
+/* GLOW */
+.glow {
     background: linear-gradient(90deg, #003bff, #82beff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+
+    animation: glowPulse 2s infinite alternate;
 }
 
-.subtitle {
-    color: #aaa;
+@keyframes glowPulse {
+    from { text-shadow: 0 0 10px #003bff; }
+    to { text-shadow: 0 0 25px #82beff; }
 }
 
 /* PLAYER */
@@ -63,22 +107,28 @@ body::before {
     position: fixed;
     bottom: 20px;
     right: 20px;
+    width: 250px;
 
-    background: rgba(0, 59, 255, 0.15);
+    background: rgba(0,59,255,0.2);
     padding: 20px;
     border-radius: 20px;
 
     backdrop-filter: blur(20px);
-    box-shadow: 0 0 40px rgba(0,59,255,0.6);
-    width: 250px;
+    box-shadow: 0 0 40px #003bff;
+
+    animation: slideUp 1.2s ease;
 }
 
-/* CLEAN BUTTONS */
+@keyframes slideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* BUTTONS */
 .controls {
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin-top: 10px;
 }
 
 .controls button {
@@ -89,43 +139,39 @@ body::before {
 
     background: linear-gradient(135deg, #003bff, #82beff);
     color: white;
-    font-size: 16px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    cursor: pointer;
-    transition: 0.2s;
 }
 
-.controls button:hover {
-    transform: scale(1.1);
-}
-
-/* PROGRESS BAR */
+/* PROGRESS */
 .progress-container {
     width: 100%;
     height: 5px;
     background: rgba(255,255,255,0.2);
     border-radius: 10px;
-    margin-top: 10px;
+    margin: 10px 0;
 }
 
 #progress {
     height: 100%;
     width: 0%;
     background: linear-gradient(90deg, #003bff, #82beff);
-    border-radius: 10px;
 }
 
 /* CURSOR */
 .cursor-glow {
     position: fixed;
-    width: 200px;
-    height: 200px;
-    background: radial-gradient(circle, rgba(130,190,255,0.3), transparent);
+    width: 40px;
+    height: 40px;
+    border: 2px solid #82beff;
     border-radius: 50%;
+    box-shadow: 0 0 10px #003bff, 0 0 20px #82beff;
     pointer-events: none;
     transform: translate(-50%, -50%);
+}
+
+/* PARTICLES */
+#particles {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
 }
