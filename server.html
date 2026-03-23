@@ -20,7 +20,6 @@
 
 <!-- MAIN EMBED -->
 <div class="embed">
-
     <div class="embed-header">
         <img src="a9986dc9d496c477d5f020ad5e38b54c.png" class="embed-icon">
         <span>Illustrate Designs™</span>
@@ -35,26 +34,23 @@
     <button class="embed-btn" onclick="joinServer()">Join Server</button>
 </div>
 
-<!-- PROJECT EMBED 1 -->
-<div class="project-embed" onclick="openPreview('1.png')">
+<!-- 🔥 PROJECT GRID -->
+<div class="project-grid">
 
-    <img src="1.png" class="project-img">
-
-    <div>
-        <h4>Adian’s Custom Design Bot</h4>
-        <p>Custom design and support bot with clean UI and automation features.</p>
+    <div class="project-embed" onclick="openPreview('1.png')">
+        <img src="1.png" class="project-img">
+        <div>
+            <h4>Adian’s Custom Design Bot</h4>
+            <p>Custom design and support bot with clean UI and automation features.</p>
+        </div>
     </div>
 
-</div>
-
-<!-- PROJECT EMBED 2 -->
-<div class="project-embed" onclick="openPreview('Screenshot 2026-03-23 000004.png')">
-
-    <img src="Screenshot 2026-03-23 000004.png" class="project-img">
-
-    <div>
-        <h4>Embed System</h4>
-        <p>Advanced embed system with additional commands and customization.</p>
+    <div class="project-embed" onclick="openPreview('Screenshot 2026-03-23 000004.png')">
+        <img src="Screenshot 2026-03-23 000004.png" class="project-img">
+        <div>
+            <h4>Embed System</h4>
+            <p>Advanced embed system with additional commands and customization.</p>
+        </div>
     </div>
 
 </div>
@@ -63,7 +59,7 @@
     <button class="main-btn" onclick="goBack()">⬅ Back</button>
 </div>
 
-<!-- 🔥 FULLSCREEN PREVIEW -->
+<!-- PREVIEW -->
 <div id="preview" class="preview" onclick="closePreview()">
     <img id="previewImg">
 </div>
@@ -77,7 +73,6 @@ function joinServer() {
     window.open("https://discord.gg/C8QUeB5fbR", "_blank");
 }
 
-/* PREVIEW */
 function openPreview(src) {
     document.getElementById("preview").style.display = "flex";
     document.getElementById("previewImg").src = src;
