@@ -2,58 +2,100 @@ body {
     margin: 0;
     font-family: Arial;
     color: white;
+    overflow-x: hidden;
+
+    background: radial-gradient(circle at center, #000814, #020024);
+}
+
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 40px;
+
+    background: rgba(0, 20, 60, 0.5);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    margin: 20px;
+}
+
+/* LOGO */
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    color: #82beff;
+}
+
+
+.hero {
     text-align: center;
-
-    background: linear-gradient(135deg, #0a001f, #120033, #1a004d);
+    margin-top: 120px;
 }
 
-/* center */
-.container {
-    margin-top: 150px;
+.hero h1 {
+    font-size: 50px;
 }
 
-/* title */
-h1 {
-    font-size: 60px;
-    color: #a855f7;
-    text-shadow: 0 0 25px #a855f7;
-}
-
-/* subtitle */
-h2 {
-    font-size: 40px;
-    background: linear-gradient(90deg, #a855f7, #3b82f6);
+.hero h2 {
+    font-size: 65px;
+    background: linear-gradient(90deg, #003bff, #82beff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-/* text */
-p {
-    color: #bbb;
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 50px;
 }
 
-/* player box */
+.gallery img {
+    width: 100%;
+    border-radius: 20px;
+    filter: brightness(0.8) blur(0.3px);
+    transition: 0.3s;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+}
+
+
 .player {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background: rgba(20, 0, 40, 0.8);
+
+    background: rgba(0, 20, 60, 0.7);
     padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 0 20px #a855f7;
+    border-radius: 20px;
+
+    backdrop-filter: blur(15px);
+    box-shadow: 0 0 30px #003bff;
 }
 
-/* buttons */
+
 .controls button {
     margin: 5px;
-    padding: 10px;
+    padding: 12px;
     border: none;
     border-radius: 50%;
-    background: #3b82f6;
+
+    background: linear-gradient(45deg, #003bff, #82beff);
     color: white;
     cursor: pointer;
 }
 
-.controls button:hover {
-    background: #2563eb;
+
+.cursor-glow {
+    position: fixed;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(130,190,255,0.3), transparent);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
 }
