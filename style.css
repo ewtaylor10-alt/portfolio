@@ -33,31 +33,21 @@ body {
 }
 
 /* BACKGROUND */
-.bg {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-}
+/* BACKGROUND IMAGE (YOUR FILE) */
+body {
+    margin: 0;
+    font-family: Inter;
+    color: white;
+    overflow: hidden;
 
-.stars {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(white 1px, transparent 1px);
-    background-size: 50px 50px;
-    opacity: 0.1;
-}
+    background: 
+        linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)),
+        url("6d734603-56e5-4f46-83e4-88f0aad1c974.png");
 
-.grid {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-image:
-        linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
-    background-size: 60px 60px;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
-
 /* HERO */
 .hero {
     text-align: center;
