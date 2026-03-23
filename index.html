@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>hnguyguys' portfolio</title>
+<title>hnguygk743 portfolio</title>
 
-<!-- 🔥 CLEAN FONT -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="style.css">
@@ -12,20 +11,27 @@
 <body>
 
 <div class="navbar">
-    <div class="logo">hnguyguys<span>.</span></div>
+    <div class="logo">hnguygk743<span>.</span></div>
 </div>
 
 <div class="hero">
     <h1>WELCOME TO</h1>
-    <h2>hnguyguys' Portfolio</h2>
+    <h2 class="glow-text">hnguygk743's Portfolio</h2>
     <p>Discord Developer • Systems • UI</p>
 
     <button class="main-btn" onclick="goToServer()">View My Work</button>
 </div>
 
+<!-- PLAYER -->
 <div class="player">
     <img id="cover" class="cover">
+
     <div id="songName">Now Playing</div>
+
+    <!-- VISUALIZER -->
+    <div class="visualizer">
+        <span></span><span></span><span></span><span></span><span></span>
+    </div>
 
     <div class="progress-container">
         <div id="progress"></div>
@@ -39,6 +45,9 @@
 
     <input type="range" id="volume" min="0" max="1" step="0.01">
 </div>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
 
 <audio id="bgMusic"></audio>
 
