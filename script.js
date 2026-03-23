@@ -1,110 +1,99 @@
 const songs = [
-"05 Let Down - Remastered.mp3",
-"Britney Spears - Gimme More.mp3",
-"Dominic Fike - white keys - wurlighost (128k).mp3",
-"RAYE - Escapism. feat. 070 Shake.mp3",
-"SpotiDownloader.com - Champagne Coast - Blood Orange.mp3",
-"Tate McRae - Sports Car.mp3",
-"Tate McRae - TIT FOR TAT.mp3",
-"The Kid LAROI - NIGHTS LIKE THIS (lyrics).mp3"
+{file:"05 Let Down - Remastered.mp3", name:"Let Down"},
+{file:"Britney Spears - Gimme More.mp3", name:"Gimme More"},
+{file:"Dominic Fike - white keys - wurlighost (128k).mp3", name:"White Keys"},
+{file:"RAYE - Escapism. feat. 070 Shake.mp3", name:"Escapism"},
+{file:"SpotiDownloader.com - Champagne Coast - Blood Orange.mp3", name:"Champagne Coast"},
+{file:"Tate McRae - Sports Car.mp3", name:"Sports Car"},
+{file:"Tate McRae - TIT FOR TAT.mp3", name:"Tit For Tat"},
+{file:"The Kid LAROI - NIGHTS LIKE THIS (lyrics).mp3", name:"Nights Like This"}
 ];
 
 let index = Math.floor(Math.random()*songs.length);
-let isShuffle = true;
+let shuffle = true;
 
 const audio = document.getElementById("audio");
 const name = document.getElementById("songName");
 const progress = document.getElementById("progress");
 
 const playBtn = document.getElementById("playBtn");
-const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
+const prevBtn = document.getElementById("prevBtn");
 const shuffleBtn = document.getElementById("shuffleBtn");
 const volume = document.getElementById("volume");
 
-/* LOAD SONG */
-function loadSong() {
-    audio.src = songs[index];
-    name.innerText = songs[index].replace(".mp3","");
+/* LOAD */
+function loadSong(){
+    audio.src = songs[index].file;
+    name.innerText = songs[index].name;
 }
 
 /* PLAY */
-function playSong() {
+function playSong(){
     audio.play();
     playBtn.innerText = "⏸";
 }
 
 /* PAUSE */
-function pauseSong() {
+function pauseSong(){
     audio.pause();
     playBtn.innerText = "▶";
 }
 
-/* TOGGLE */
-playBtn.onclick = () => {
-    if (audio.paused) playSong();
-    else pauseSong();
-};
+/* CONTROLS */
+playBtn.onclick = ()=> audio.paused ? playSong() : pauseSong();
 
-/* NEXT */
-nextBtn.onclick = () => {
-    if (isShuffle) {
-        index = Math.floor(Math.random()*songs.length);
-    } else {
-        index = (index + 1) % songs.length;
-    }
+nextBtn.onclick = ()=>{
+    index = shuffle
+        ? Math.floor(Math.random()*songs.length)
+        : (index+1)%songs.length;
     loadSong();
     playSong();
 };
 
-/* PREV */
-prevBtn.onclick = () => {
-    index = (index - 1 + songs.length) % songs.length;
+prevBtn.onclick = ()=>{
+    index = (index-1+songs.length)%songs.length;
     loadSong();
     playSong();
 };
 
-/* SHUFFLE */
-shuffleBtn.onclick = () => {
-    isShuffle = !isShuffle;
-    shuffleBtn.style.opacity = isShuffle ? "1" : "0.5";
+shuffleBtn.onclick = ()=>{
+    shuffle = !shuffle;
+    shuffleBtn.style.opacity = shuffle ? "1" : "0.4";
 };
 
 /* PROGRESS */
-audio.addEventListener("timeupdate", () => {
-    if (audio.duration) {
-        progress.style.width =
-            (audio.currentTime / audio.duration) * 100 + "%";
+audio.ontimeupdate = ()=>{
+    if(audio.duration){
+        progress.style.width = (audio.currentTime/audio.duration)*100 + "%";
     }
-});
+};
 
-/* CLICK TO SEEK */
-document.querySelector(".progress-bar").onclick = (e) => {
-    const width = e.currentTarget.clientWidth;
-    const clickX = e.offsetX;
-    audio.currentTime = (clickX / width) * audio.duration;
+document.querySelector(".progress-bar").onclick = (e)=>{
+    audio.currentTime =
+        (e.offsetX / e.currentTarget.clientWidth) * audio.duration;
 };
 
 /* VOLUME */
-volume.oninput = () => {
-    audio.volume = volume.value;
-};
+volume.oninput = ()=> audio.volume = volume.value;
 
 /* AUTO NEXT */
-audio.onended = () => {
-    nextBtn.click();
-};
+audio.onended = ()=> nextBtn.click();
 
-/* LOAD + FIX AUTOPLAY */
-window.onload = () => {
+/* LOADER */
+window.onload = ()=>{
     loadSong();
-
-    setTimeout(() => {
-        document.getElementById("loader").style.display = "none";
-    }, 800);
+    setTimeout(()=> document.getElementById("loader").style.display="none",800);
 };
 
-/* REQUIRED USER CLICK FOR SOUND */
-document.body.addEventListener("click", () => {
-    if (audio.paused) playSong();
-}, { once: true });
+/* AUTOPLAY FIX */
+document.body.addEventListener("click", ()=>{
+    if(audio.paused) playSong();
+},{once:true});
+
+/* MOUSE GLOW */
+document.addEventListener("mousemove", e=>{
+    const glow = document.getElementById("cursorGlow");
+    glow.style.left = e.clientX + "px";
+    glow.style.top = e.clientY + "px";
+});
