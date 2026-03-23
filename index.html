@@ -19,9 +19,7 @@
     </div>
 </div>
 
-<!-- your normal site starts here -->
-<div class="navbar">
-
+<!-- NAVBAR -->
 <div class="navbar">
     <div class="logo">hnguygk743<span>.</span></div>
 </div>
@@ -29,11 +27,12 @@
 <section class="hero">
     <h1>WELCOME TO</h1>
     <h2>hnguygk743's Portfolio</h2>
-    <p><strong>Discord:</strong> 21joee1</p>
 
-<p>
-I’m hnguygk743, a dev who makes Discord bots, systems, and services, and I’m learning liveries, clothing, and graphics—check my past work for my latest stuff.
-</p>
+    <p><strong>Discord:</strong> 21joee1</p>
+    <p>
+    I’m hnguygk743, a developer who builds Discord bots, systems, and services.
+    I’m also learning liveries, clothing, and graphics — check my past work to see what I’ve been working on.
+    </p>
 
     <button class="main-btn" onclick="goToServer()">View My Work</button>
 </section>
@@ -63,8 +62,10 @@ I’m hnguygk743, a dev who makes Discord bots, systems, and services, and I’m
 
 <script>
 function goToServer() {
-    localStorage.setItem("songIndex", currentSong);
-    localStorage.setItem("songTime", audio.currentTime);
+    if (typeof audio !== "undefined") {
+        localStorage.setItem("songIndex", currentSong);
+        localStorage.setItem("songTime", audio.currentTime);
+    }
     window.location.href = "server.html";
 }
 </script>
