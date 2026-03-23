@@ -140,3 +140,26 @@ body::before {
     text-align:center;
     margin-top:40px;
 }
+/* PROJECT EMBEDS */
+.project-embed {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+
+    margin-top: 20px;
+    padding: 15px;
+
+    width: 320px;
+
+    background: rgba(0,0,0,0.6);
+    border-radius: 12px;
+
+    box-shadow: 0 0 15px white;
+}
+
+.project-img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 8px;
+}
