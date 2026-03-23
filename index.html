@@ -3,38 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <title>hnguyguys' portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<!-- LOADING SCREEN -->
+<div id="loader">
+    <div class="loader-text">LOADING...</div>
+</div>
+
+<canvas id="particles"></canvas>
+
 <!-- NAVBAR -->
 <div class="navbar">
     <div class="logo">hnguyguys<span>.</span></div>
-    <div class="nav-links">
-        <a href="#">Universe</a>
-        <a href="#">Signals</a>
-        <a href="#">Comm-Link</a>
-    </div>
 </div>
 
 <!-- HERO -->
-<div class="hero">
-    <h1 class="small-title">WELCOME TO</h1>
-
-    <h2 class="main-title">
-        hnguyguys<span>' Portfolio</span>
-    </h2>
-
-    <p class="subtitle">
-        Exploring creative systems, clean design, and digital experiences.
-    </p>
+<div class="hero reveal">
+    <h1>WELCOME TO</h1>
+    <h2 class="glow">hnguyguys' Portfolio</h2>
+    <p>Clean systems. Creative design. Digital energy.</p>
 </div>
 
-<!-- MUSIC PLAYER -->
+<!-- PLAYER -->
 <div class="player">
+    <img id="cover" class="cover">
     <div id="songName">Now Playing</div>
 
-    <!-- progress -->
     <div class="progress-container">
         <div id="progress"></div>
     </div>
@@ -44,6 +43,8 @@
         <button id="playBtn" onclick="toggleMusic()">▶</button>
         <button onclick="nextSong()">⏭</button>
     </div>
+
+    <input type="range" id="volume" min="0" max="1" step="0.01">
 </div>
 
 <div class="cursor-glow" id="cursor"></div>
