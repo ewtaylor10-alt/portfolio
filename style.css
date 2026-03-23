@@ -4,7 +4,7 @@ body {
     color:white;
     overflow:hidden;
 
-    background:url("9eab687cdd4089ffe0fb1c131cbe77d1.png") center/cover no-repeat;
+    background: url("9eab687cdd4089ffe0fb1c131cbe77d1.png") center 20% / cover no-repeat;
 }
 
 /* BLUR */
@@ -13,10 +13,11 @@ body::before {
     position:fixed;
     width:100%;
     height:100%;
-    backdrop-filter:blur(12px);
-    background:rgba(0,30,80,0.4);
+    backdrop-filter: blur(6px); /* less blur */
+    background: rgba(0,0,0,0.2); /* removes blue tint */
     z-index:-1;
 }
+
 
 /* NAV */
 .navbar { padding:20px 40px; }
