@@ -3,7 +3,7 @@ const songs = [
     { file: "Dominic Fike - white keys - wurlighost (128k).mp3", name: "White Keys" },
     { file: "Britney Spears - Gimme More.mp3", name: "Gimme More" },
     { file: "RAYE - Escapism. feat. 070 Shake.mp3", name: "Escapism" },
-    { file: "SpotiDownloader.com - Champa.mp3", name: "Champagne Coast" },
+    { file: "SpotiDownloader.com - Champagne Coast - Blood Orange.mp3", name: "Champagne Coast" },
     { file: "Tate McRae - Sports Car.mp3", name: "Sports Car" },
     { file: "Tate McRae - TIT FOR TAT.mp3", name: "Tit For Tat" },
     { file: "The Kid LAROI - NIGHTS LIKE THIS (lyrics).mp3", name: "Nights Like This" }
