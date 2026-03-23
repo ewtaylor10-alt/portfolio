@@ -271,3 +271,8 @@ body::before {
 @keyframes loadBar {
     to { width: 100%; }
 }
+.navbar {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px 40px;
+}
