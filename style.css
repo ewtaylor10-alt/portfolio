@@ -13,9 +13,9 @@ body {
     height: 100%;
     background: black;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     z-index: 999;
 }
 
@@ -28,28 +28,24 @@ body {
     animation: spin 1s linear infinite;
 }
 
-@keyframes spin { 100% { transform: rotate(360deg);} }
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}
 
-/* PARALLAX */
-.parallax {
+/* BACKGROUND */
+.bg {
     position: fixed;
     width: 100%;
     height: 100%;
-    overflow: hidden;
 }
 
 .stars {
     position: absolute;
-    width: 200%;
-    height: 200%;
-    background: url('https://i.imgur.com/8bKQX6k.png');
-    animation: moveStars 60s linear infinite;
-    opacity: 0.4;
-}
-
-@keyframes moveStars {
-    from { transform: translate(0,0);}
-    to { transform: translate(-500px,-500px);}
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(white 1px, transparent 1px);
+    background-size: 50px 50px;
+    opacity: 0.1;
 }
 
 .grid {
@@ -59,7 +55,7 @@ body {
     background-image:
         linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
-    background-size: 40px 40px;
+    background-size: 60px 60px;
 }
 
 /* HERO */
@@ -71,7 +67,7 @@ body {
 .glow {
     font-family: Orbitron;
     font-size: 60px;
-    text-shadow: 0 0 20px white, 0 0 60px white;
+    text-shadow: 0 0 20px white;
 }
 
 /* PLAYER */
@@ -80,14 +76,17 @@ body {
     bottom: 20px;
     right: 20px;
     width: 280px;
-    background: rgba(255,255,255,0.05);
-    border-radius: 15px;
-    backdrop-filter: blur(15px);
     padding: 15px;
+    border-radius: 15px;
+
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(15px);
+
+    box-shadow: 0 0 20px rgba(255,255,255,0.2);
 }
 
 /* BANNER */
-.banner img {
+.banner {
     width: 100%;
     border-radius: 10px;
     filter: grayscale(1);
@@ -105,34 +104,49 @@ body {
     background: white;
 }
 
-/* BUTTONS */
+/* CONTROLS */
 .controls {
     display: flex;
     justify-content: space-between;
 }
+
 .controls button {
-    background: rgba(255,255,255,0.1);
-    border: none;
-    color: white;
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.1);
+    color: white;
+    transition: 0.2s;
+}
+
+.controls button:hover {
+    background: white;
+    color: black;
+}
+
+/* VOLUME */
+#volume {
+    width: 100%;
+    margin-top: 10px;
 }
 
 /* CURSOR */
 #cursor {
     position: fixed;
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     border: 2px solid white;
     border-radius: 50%;
     pointer-events: none;
 }
+
+/* PARTICLES */
 .particle {
     position: fixed;
-    width: 5px;
-    height: 5px;
+    width: 4px;
+    height: 4px;
     background: white;
     border-radius: 50%;
-    opacity: 0.5;
+    opacity: 0.6;
 }
