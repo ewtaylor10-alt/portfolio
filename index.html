@@ -1,22 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>hnguyguys' portfolio</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="container">
-        <h1>Eric</h1>
-        <h2>Exploring the Digital Universe</h2>
-        <p>I build cool stuff, design systems, and create clean experiences.</p>
+<div class="container">
+    <h1>hnguyguys</h1>
+    <h2>Exploring the Digital Universe</h2>
+    <p>I build cool stuff, design systems, and create clean experiences.</p>
+</div>
 
-        <button onclick="toggleMusic()">Play Music</button>
+<!-- Music Player -->
+<div class="player">
+    <p id="songName">Now Playing</p>
+    <div class="controls">
+        <button onclick="prevSong()">⏮</button>
+        <button onclick="toggleMusic()">⏯</button>
+        <button onclick="nextSong()">⏭</button>
     </div>
+</div>
 
-    <audio id="bgMusic"></audio>
+<audio id="bgMusic"></audio>
 
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
