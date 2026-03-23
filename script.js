@@ -1,30 +1,15 @@
 const audio = document.getElementById("bgMusic");
 const playBtn = document.getElementById("playBtn");
 const progress = document.getElementById("progress");
-const cover = document.getElementById("cover");
-const songName = document.getElementById("songName");
 
-const songs = [
-    {
-        file: "Dominic Fike - white keys - wurlighost (128k).mp3",
-        name: "White Keys",
-        cover: "https://i.pinimg.com/736x/7b/f5/41/7bf54150f1d216e9f64de42e3150a76a.jpg"
-    }
-];
+audio.src = "Dominic Fike - white keys - wurlighost (128k).mp3";
 
-let currentSong = 0;
-
-function playSong(i) {
-    audio.src = songs[i].file;
-    audio.play();
-    cover.src = songs[i].cover;
-    songName.innerText = songs[i].name;
-    playBtn.innerText = "⏸";
-}
-
+/* PLAY */
 function toggleMusic() {
-    if (audio.paused) playSong(currentSong);
-    else {
+    if (audio.paused) {
+        audio.play();
+        playBtn.innerText = "⏸";
+    } else {
         audio.pause();
         playBtn.innerText = "▶";
     }
@@ -35,9 +20,9 @@ audio.addEventListener("timeupdate", () => {
     progress.style.width = (audio.currentTime / audio.duration) * 100 + "%";
 });
 
-/* CLICK TO PLAY */
+/* AUTOPLAY FIX */
 document.addEventListener("click", () => {
-    if (audio.paused) playSong(currentSong);
+    if (audio.paused) audio.play();
 }, { once: true });
 
 /* CURSOR */
@@ -56,11 +41,11 @@ canvas.height = window.innerHeight;
 
 let particles = [];
 
-for (let i = 0; i < 80; i++) {
+for (let i = 0; i < 70; i++) {
     particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        size: Math.random() * 3,
+        size: Math.random() * 2,
         speed: Math.random() * 1
     });
 }
@@ -69,7 +54,8 @@ function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     particles.forEach(p => {
-        p.y -= p.speed + audio.currentTime * 0.05;
+        p.y -= p.speed + audio.currentTime * 0.03;
+
         if (p.y < 0) p.y = canvas.height;
 
         ctx.fillStyle = "#82beff";
