@@ -1,3 +1,4 @@
+/* SONG LIST */
 const songs = [
     { file: "05 Let Down - Remastered.mp3", name: "Let Down" },
     { file: "Dominic Fike - white keys - wurlighost (128k).mp3", name: "White Keys" },
@@ -19,60 +20,77 @@ const songs = [
     { file: "The Kid LAROI - NIGHTS LIKE THIS (lyrics).mp3", name: "Nights Like This" }
 ];
 
+/* SAVE SONG LIST */
+localStorage.setItem("songsList", JSON.stringify(songs));
+
 let currentSong = 0;
 
+/* SAFE ELEMENTS */
 const audio = document.getElementById("bgMusic");
 const songName = document.getElementById("songName");
 const cover = document.getElementById("cover");
 const playlist = document.getElementById("playlist");
 const progress = document.getElementById("progress");
 
-/* BUILD PLAYLIST */
-songs.forEach((s, i) => {
-    let opt = document.createElement("option");
-    opt.value = i;
-    opt.textContent = s.name;
-    playlist.appendChild(opt);
-});
+/* BUILD PLAYLIST (ONLY IF EXISTS) */
+if (playlist) {
+    songs.forEach((s, i) => {
+        let opt = document.createElement("option");
+        opt.value = i;
+        opt.textContent = s.name;
+        playlist.appendChild(opt);
+    });
 
-/* SELECT SONG */
-playlist.addEventListener("change", () => {
-    playSong(parseInt(playlist.value));
-});
+    playlist.addEventListener("change", () => {
+        playSong(parseInt(playlist.value));
+    });
+}
 
-/* RESTORE SONG BETWEEN PAGES */
+/* RESTORE SONG (FIXED PROPERLY) */
 window.addEventListener("load", () => {
+    if (!audio) return;
+
     const savedIndex = localStorage.getItem("songIndex");
     const savedTime = localStorage.getItem("songTime");
 
     if (savedIndex !== null) {
         currentSong = parseInt(savedIndex);
+
         audio.src = songs[currentSong].file;
 
-        audio.currentTime = savedTime || 0;
-        audio.play();
+        audio.addEventListener("loadedmetadata", () => {
+            audio.currentTime = savedTime || 0;
+            audio.play();
+        }, { once: true });
 
-        songName.innerText = songs[currentSong].name;
-        cover.src = "c0bba8165dbb9982fa17e300d66f8264.jpg";
+        if (songName) songName.innerText = songs[currentSong].name;
+        if (cover) cover.src = "c0bba8165dbb9982fa17e300d66f8264.jpg";
+        if (playlist) playlist.value = currentSong;
 
-        playlist.value = currentSong;
     } else {
-        // default first load
         playSong(0);
     }
 });
 
-/* PLAY FUNCTION */
+/* SAVE BEFORE LEAVING PAGE */
+window.addEventListener("beforeunload", () => {
+    if (!audio) return;
+    localStorage.setItem("songIndex", currentSong);
+    localStorage.setItem("songTime", audio.currentTime);
+});
+
+/* PLAY */
 function playSong(i) {
+    if (!audio) return;
+
     currentSong = i;
 
     audio.src = songs[i].file;
     audio.play();
 
-    songName.innerText = songs[i].name;
-    cover.src = "c0bba8165dbb9982fa17e300d66f8264.jpg";
-
-    playlist.value = i;
+    if (songName) songName.innerText = songs[i].name;
+    if (cover) cover.src = "c0bba8165dbb9982fa17e300d66f8264.jpg";
+    if (playlist) playlist.value = i;
 
     const playBtn = document.getElementById("playBtn");
     if (playBtn) playBtn.innerText = "⏸";
@@ -90,6 +108,8 @@ function prevSong() {
 }
 
 function toggleMusic() {
+    if (!audio) return;
+
     const playBtn = document.getElementById("playBtn");
 
     if (audio.paused) {
@@ -101,28 +121,31 @@ function toggleMusic() {
     }
 }
 
-/* PROGRESS BAR */
-audio.addEventListener("timeupdate", () => {
-    if (audio.duration) {
-        progress.style.width =
-            (audio.currentTime / audio.duration) * 100 + "%";
-    }
-});
+/* PROGRESS */
+if (audio) {
+    audio.addEventListener("timeupdate", () => {
+        if (audio.duration && progress) {
+            progress.style.width =
+                (audio.currentTime / audio.duration) * 100 + "%";
+        }
+    });
 
-/* AUTO NEXT */
-audio.addEventListener("ended", nextSong);
+    audio.addEventListener("ended", nextSong);
+}
 
-/* AUTOPLAY ON FIRST CLICK */
+/* AUTOPLAY CLICK */
 document.addEventListener("click", () => {
-    if (audio.paused) audio.play();
+    if (audio && audio.paused) audio.play();
 }, { once: true });
-/* LOADING SCREEN */
+
+/* LOADER */
 window.addEventListener("load", () => {
     setTimeout(() => {
         const loader = document.getElementById("loader");
-        loader.style.opacity = "0";
-        loader.style.transition = "0.5s";
-
-        setTimeout(() => loader.remove(), 500);
+        if (loader) {
+            loader.style.opacity = "0";
+            loader.style.transition = "0.5s";
+            setTimeout(() => loader.remove(), 500);
+        }
     }, 1800);
 });
