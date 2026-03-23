@@ -19,21 +19,25 @@
 
 <!-- HERO -->
 <div class="hero">
-    <h1>EXPLORING THE</h1>
-    <h2>DIGITAL UNIVERSE</h2>
-    <p>I build cool stuff, design systems, and create clean experiences.</p>
-</div>
+    <h1 class="small-title">WELCOME TO</h1>
 
-<!-- GALLERY -->
-<div class="gallery">
-    <img src="https://i.pinimg.com/736x/7b/f5/41/7bf54150f1d216e9f64de42e3150a76a.jpg">
-    <img src="https://i.pinimg.com/736x/1c/f8/70/1cf870c7-9b40-48ff-ab7f-68588dce4353.png">
-    <img src="https://i.pinimg.com/736x/ea/5b/25/ea5b25f6-614c-4cfe-8b97-1a0f3a402d60.png">
+    <h2 class="main-title">
+        hnguyguys<span>' Portfolio</span>
+    </h2>
+
+    <p class="subtitle">
+        Exploring creative systems, clean design, and digital experiences.
+    </p>
 </div>
 
 <!-- MUSIC PLAYER -->
 <div class="player">
     <div id="songName">Now Playing</div>
+
+    <!-- progress -->
+    <div class="progress-container">
+        <div id="progress"></div>
+    </div>
 
     <div class="controls">
         <button onclick="prevSong()">⏮</button>
@@ -42,7 +46,6 @@
     </div>
 </div>
 
-<!-- CURSOR GLOW -->
 <div class="cursor-glow" id="cursor"></div>
 
 <audio id="bgMusic"></audio>
