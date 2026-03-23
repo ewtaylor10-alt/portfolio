@@ -4,92 +4,122 @@ body {
     color: white;
     overflow-x: hidden;
 
-    background: radial-gradient(circle at center, #000814, #020024);
+    /* 🔥 BACKGROUND BLEND */
+    background: linear-gradient(135deg, #000814, #001d66, #003bff);
 }
 
+/* subtle background glow image */
+body::before {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: url("https://i.pinimg.com/736x/7b/f5/41/7bf54150f1d216e9f64de42e3150a76a.jpg") center/cover;
+    opacity: 0.08;
+    filter: blur(40px);
+    z-index: -1;
+}
 
+/* NAVBAR */
 .navbar {
     display: flex;
     justify-content: space-between;
     padding: 20px 40px;
-
-    background: rgba(0, 20, 60, 0.5);
+    background: rgba(0, 59, 255, 0.15);
     backdrop-filter: blur(15px);
     border-radius: 20px;
     margin: 20px;
 }
 
-/* LOGO */
 .logo {
-    font-size: 20px;
     font-weight: bold;
     color: #82beff;
 }
 
-
+/* HERO */
 .hero {
     text-align: center;
     margin-top: 120px;
 }
 
-.hero h1 {
-    font-size: 50px;
+.small-title {
+    color: #aaa;
+    letter-spacing: 4px;
 }
 
-.hero h2 {
+.main-title {
     font-size: 65px;
     background: linear-gradient(90deg, #003bff, #82beff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 50px;
+.subtitle {
+    color: #aaa;
 }
 
-.gallery img {
-    width: 100%;
-    border-radius: 20px;
-    filter: brightness(0.8) blur(0.3px);
-    transition: 0.3s;
-}
-
-.gallery img:hover {
-    transform: scale(1.05);
-    filter: brightness(1.2);
-}
-
-
+/* PLAYER */
 .player {
     position: fixed;
     bottom: 20px;
     right: 20px;
 
-    background: rgba(0, 20, 60, 0.7);
+    background: rgba(0, 59, 255, 0.15);
     padding: 20px;
     border-radius: 20px;
 
-    backdrop-filter: blur(15px);
-    box-shadow: 0 0 30px #003bff;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 40px rgba(0,59,255,0.6);
+    width: 250px;
 }
 
+/* CLEAN BUTTONS */
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
 
 .controls button {
-    margin: 5px;
-    padding: 12px;
-    border: none;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
+    border: none;
 
-    background: linear-gradient(45deg, #003bff, #82beff);
+    background: linear-gradient(135deg, #003bff, #82beff);
     color: white;
+    font-size: 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     cursor: pointer;
+    transition: 0.2s;
 }
 
+.controls button:hover {
+    transform: scale(1.1);
+}
 
+/* PROGRESS BAR */
+.progress-container {
+    width: 100%;
+    height: 5px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+#progress {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #003bff, #82beff);
+    border-radius: 10px;
+}
+
+/* CURSOR */
 .cursor-glow {
     position: fixed;
     width: 200px;
