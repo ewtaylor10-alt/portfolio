@@ -34,7 +34,7 @@
     <button class="embed-btn" onclick="joinServer()">Join Server</button>
 </div>
 
-<!-- 🔥 PROJECT GRID -->
+<!-- PROJECT GRID -->
 <div class="project-grid">
 
     <div class="project-embed" onclick="openPreview('1.png')">
@@ -64,6 +64,9 @@
     <img id="previewImg">
 </div>
 
+<!-- 🔥 AUDIO (keeps music working on this page) -->
+<audio id="bgMusic"></audio>
+
 <script>
 function goBack() {
     window.location.href = "index.html";
@@ -81,6 +84,27 @@ function openPreview(src) {
 function closePreview() {
     document.getElementById("preview").style.display = "none";
 }
+
+/* 🔥 RESTORE MUSIC */
+window.addEventListener("load", () => {
+    const audio = document.getElementById("bgMusic");
+
+    const savedIndex = localStorage.getItem("songIndex");
+    const savedTime = localStorage.getItem("songTime");
+
+    if (savedIndex !== null) {
+        const songs = JSON.parse(localStorage.getItem("songsList"));
+
+        if (songs) {
+            audio.src = songs[savedIndex].file;
+
+            audio.addEventListener("loadedmetadata", () => {
+                audio.currentTime = savedTime || 0;
+                audio.play();
+            });
+        }
+    }
+});
 </script>
 
 <script src="script.js"></script>
