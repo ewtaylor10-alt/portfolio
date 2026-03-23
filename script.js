@@ -116,3 +116,13 @@ audio.addEventListener("ended", nextSong);
 document.addEventListener("click", () => {
     if (audio.paused) audio.play();
 }, { once: true });
+/* LOADING SCREEN */
+window.addEventListener("load", () => {
+    setTimeout(() => {
+        const loader = document.getElementById("loader");
+        loader.style.opacity = "0";
+        loader.style.transition = "0.5s";
+
+        setTimeout(() => loader.remove(), 500);
+    }, 1800);
+});
