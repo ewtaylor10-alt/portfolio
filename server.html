@@ -36,7 +36,7 @@
 </div>
 
 <!-- PROJECT EMBED 1 -->
-<div class="project-embed">
+<div class="project-embed" onclick="openPreview('1.png')">
 
     <img src="1.png" class="project-img">
 
@@ -48,7 +48,7 @@
 </div>
 
 <!-- PROJECT EMBED 2 -->
-<div class="project-embed">
+<div class="project-embed" onclick="openPreview('Screenshot 2026-03-23 000004.png')">
 
     <img src="Screenshot 2026-03-23 000004.png" class="project-img">
 
@@ -63,6 +63,11 @@
     <button class="main-btn" onclick="goBack()">⬅ Back</button>
 </div>
 
+<!-- 🔥 FULLSCREEN PREVIEW -->
+<div id="preview" class="preview" onclick="closePreview()">
+    <img id="previewImg">
+</div>
+
 <script>
 function goBack() {
     window.location.href = "index.html";
@@ -70,6 +75,16 @@ function goBack() {
 
 function joinServer() {
     window.open("https://discord.gg/C8QUeB5fbR", "_blank");
+}
+
+/* PREVIEW */
+function openPreview(src) {
+    document.getElementById("preview").style.display = "flex";
+    document.getElementById("previewImg").src = src;
+}
+
+function closePreview() {
+    document.getElementById("preview").style.display = "none";
 }
 </script>
 
