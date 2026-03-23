@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Server</title>
+<title>My Work</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,42 +16,32 @@
 
 <div class="hero">
     <h2>Illustrate Designs™</h2>
-    <p>Owner: nnotcant</p>
+    <p>Co-Executive • Discord Developer</p>
 </div>
 
 <section class="section">
-    <h2>Server Info</h2>
+    <h2>My Work</h2>
 
     <div class="cards">
-        <div class="card">Members<br><span>2,231</span></div>
-        <div class="card">Roles<br><span>176</span></div>
-        <div class="card">Text Channels<br><span>217</span></div>
-        <div class="card">Voice Channels<br><span>13</span></div>
+        <div class="card img-card">Add Image</div>
+        <div class="card img-card">Add Image</div>
+        <div class="card img-card">Add Image</div>
+        <div class="card img-card">Add Image</div>
     </div>
 </section>
 
-<section class="section">
-    <h2>My Roles</h2>
-
-    <div class="cards">
-        <div class="card">Co-Executive</div>
-        <div class="card">Management Team</div>
-        <div class="card">Solutions Team</div>
-        <div class="card">Senior Designer</div>
-        <div class="card">Discord Developer</div>
-        <div class="card">Quality Control</div>
-        <div class="card">Staff Team</div>
-    </div>
-</section>
+<div style="text-align:center; margin-bottom:40px;">
+    <button class="main-btn" onclick="goBack()">⬅ Back</button>
+</div>
 
 <section class="section">
-    <h2>Join</h2>
-    <button class="main-btn" onclick="joinServer()">Join Discord</button>
+    <h2>Contact</h2>
+    <p>Discord: 21joee1</p>
 </section>
 
 <script>
-function joinServer() {
-    window.open("https://discord.gg/C8QUeB5fbR", "_blank");
+function goBack() {
+    window.location.href = "index.html";
 }
 </script>
 
