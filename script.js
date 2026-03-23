@@ -1,106 +1,86 @@
 const songs = [
-    { file: "05 Let Down - Remastered.mp3", name: "Let Down" },
-    { file: "Britney Spears - Gimme More.mp3", name: "Gimme More" },
-    { file: "Dominic Fike - white keys - wurlighost (128k).mp3", name: "White Keys" },
-    { file: "RAYE - Escapism. feat. 070 Shake.mp3", name: "Escapism" }
+"05 Let Down - Remastered.mp3",
+"Britney Spears - Gimme More.mp3",
+"Dominic Fike - white keys - wurlighost (128k).mp3",
+"RAYE - Escapism. feat. 070 Shake.mp3",
+"SpotiDownloader.com - Champagne Coast - Blood Orange.mp3",
+"Tate McRae - Sports Car.mp3",
+"Tate McRae - TIT FOR TAT.mp3",
+"The Kid LAROI - NIGHTS LIKE THIS (lyrics).mp3"
 ];
 
-let currentSong = Math.floor(Math.random() * songs.length);
-let shuffle = true;
-
-const audio = document.getElementById("bgMusic");
-const songName = document.getElementById("songName");
+let i = Math.floor(Math.random()*songs.length);
+const audio = document.getElementById("audio");
+const name = document.getElementById("songName");
 const progress = document.getElementById("progress");
-const playBtn = document.getElementById("playBtn");
+const btn = document.getElementById("playBtn");
 
-/* LOAD SONG */
-function loadSong(i) {
-    audio.src = songs[i].file;
-    songName.innerText = songs[i].name;
+function loadSong() {
+    audio.src = songs[i];
+    name.innerText = songs[i].split(" - ")[1] || songs[i];
 }
-
-/* PLAY */
-function playSong() {
+function play() {
     audio.play();
-    playBtn.innerText = "⏸";
+    btn.innerText = "⏸";
 }
-
 function toggleMusic() {
-    if (audio.paused) playSong();
+    if(audio.paused) play();
     else {
         audio.pause();
-        playBtn.innerText = "▶";
+        btn.innerText="▶";
     }
 }
-
 function nextSong() {
-    currentSong = Math.floor(Math.random() * songs.length);
-    loadSong(currentSong);
-    playSong();
+    i = Math.floor(Math.random()*songs.length);
+    loadSong(); play();
 }
-
 function prevSong() {
-    currentSong = (currentSong - 1 + songs.length) % songs.length;
-    loadSong(currentSong);
-    playSong();
+    i = (i-1+songs.length)%songs.length;
+    loadSong(); play();
 }
+function shuffleToggle(){}
 
-function shuffleToggle() {
-    shuffle = !shuffle;
-}
-
-/* PROGRESS */
-audio.addEventListener("timeupdate", () => {
-    progress.style.width = (audio.currentTime / audio.duration) * 100 + "%";
+audio.addEventListener("timeupdate",()=>{
+    progress.style.width=(audio.currentTime/audio.duration)*100+"%";
 });
 
-/* AUTO PLAY FIX */
-document.addEventListener("click", () => {
-    if (audio.paused) playSong();
-}, { once: true });
+/* AUTOPLAY FIX */
+document.addEventListener("click",()=>play(),{once:true});
 
-/* LOAD FIX */
-window.onload = () => {
-    loadSong(currentSong);
-
-    setTimeout(() => {
-        document.getElementById("loader").style.display = "none";
-    }, 1500);
+/* LOADER FIX */
+window.onload=()=>{
+    loadSong();
+    setTimeout(()=>{
+        document.getElementById("loader").style.display="none";
+    },1500);
 };
 
-/* CURSOR + PARTICLES */
-const cursor = document.getElementById("cursor");
+/* CURSOR + TRAIL */
+const cursor=document.getElementById("cursor");
+document.addEventListener("mousemove",e=>{
+    cursor.style.left=e.clientX+"px";
+    cursor.style.top=e.clientY+"px";
 
-document.addEventListener("mousemove", e => {
-    cursor.style.left = e.clientX + "px";
-    cursor.style.top = e.clientY + "px";
-
-    const p = document.createElement("div");
-    p.className = "particle";
-    p.style.left = e.clientX + "px";
-    p.style.top = e.clientY + "px";
-
+    const p=document.createElement("div");
+    p.className="particle";
+    p.style.left=e.clientX+"px";
+    p.style.top=e.clientY+"px";
     document.body.appendChild(p);
-
-    setTimeout(() => p.remove(), 500);
+    setTimeout(()=>p.remove(),400);
 });
 
-/* WAVEFORM */
-const canvas = document.getElementById("waveform");
-const ctx = canvas.getContext("2d");
+/* WAVE */
+const c=document.getElementById("wave");
+const ctx=c.getContext("2d");
+c.width=280; c.height=60;
 
-canvas.width = 300;
-canvas.height = 60;
-
-function drawWave() {
-    ctx.clearRect(0,0,300,60);
-
-    for(let i=0;i<30;i++){
-        let h = Math.random() * (audio.paused ? 10 : 40);
-        ctx.fillStyle = "white";
-        ctx.fillRect(i*10,60-h,5,h);
+function draw(){
+    ctx.clearRect(0,0,280,60);
+    for(let j=0;j<30;j++){
+        let h=Math.random()*(audio.paused?10:40);
+        ctx.fillStyle="white";
+        ctx.fillRect(j*10,60-h,5,h);
     }
-
-    requestAnimationFrame(drawWave);
+    requestAnimationFrame(draw);
 }
-drawWave();
+draw();
