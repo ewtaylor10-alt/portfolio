@@ -1,73 +1,84 @@
+const audio = document.getElementById("bgMusic");
+const playBtn = document.getElementById("playBtn");
+const progress = document.getElementById("progress");
+const cover = document.getElementById("cover");
+const songName = document.getElementById("songName");
+
 const songs = [
-    { file: "Dominic Fike - white keys - wurlighost (128k).mp3", name: "White Keys" },
-    { file: "05 Let Down - Remastered.mp3", name: "Let Down" },
-    { file: "The Kid LAROI - NIGHTS LIKE THIS (lyrics).mp3", name: "Nights Like This" }
+    {
+        file: "Dominic Fike - white keys - wurlighost (128k).mp3",
+        name: "White Keys",
+        cover: "https://i.pinimg.com/736x/7b/f5/41/7bf54150f1d216e9f64de42e3150a76a.jpg"
+    }
 ];
 
 let currentSong = 0;
 
-const audio = document.getElementById("bgMusic");
-const playBtn = document.getElementById("playBtn");
-const songName = document.getElementById("songName");
-const progress = document.getElementById("progress");
-
-/* PLAY */
-function playSong(index) {
-    audio.src = songs[index].file;
+function playSong(i) {
+    audio.src = songs[i].file;
     audio.play();
+    cover.src = songs[i].cover;
+    songName.innerText = songs[i].name;
     playBtn.innerText = "⏸";
-    songName.innerText = songs[index].name;
 }
 
-/* NEXT */
-function nextSong() {
-    currentSong = (currentSong + 1) % songs.length;
-    playSong(currentSong);
-}
-
-/* PREV */
-function prevSong() {
-    currentSong = (currentSong - 1 + songs.length) % songs.length;
-    playSong(currentSong);
-}
-
-/* TOGGLE */
 function toggleMusic() {
-    if (audio.paused) {
-        playSong(currentSong);
-    } else {
+    if (audio.paused) playSong(currentSong);
+    else {
         audio.pause();
         playBtn.innerText = "▶";
     }
 }
 
-/* PROGRESS UPDATE */
+/* PROGRESS */
 audio.addEventListener("timeupdate", () => {
-    const percent = (audio.currentTime / audio.duration) * 100;
-    progress.style.width = percent + "%";
+    progress.style.width = (audio.currentTime / audio.duration) * 100 + "%";
 });
 
-/* NEXT AUTO */
-audio.addEventListener("ended", nextSong);
-
-/* AUTOPLAY (best possible) */
-window.addEventListener("load", () => {
-    audio.src = songs[currentSong].file;
-    audio.play().catch(() => {});
-    songName.innerText = songs[currentSong].name;
-});
-
-/* CLICK FALLBACK */
+/* CLICK TO PLAY */
 document.addEventListener("click", () => {
-    if (audio.paused) {
-        audio.play();
-        playBtn.innerText = "⏸";
-    }
+    if (audio.paused) playSong(currentSong);
 }, { once: true });
 
 /* CURSOR */
 const cursor = document.getElementById("cursor");
-document.addEventListener("mousemove", (e) => {
+document.addEventListener("mousemove", e => {
     cursor.style.left = e.clientX + "px";
     cursor.style.top = e.clientY + "px";
 });
+
+/* PARTICLES */
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+for (let i = 0; i < 80; i++) {
+    particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 3,
+        speed: Math.random() * 1
+    });
+}
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    particles.forEach(p => {
+        p.y -= p.speed + audio.currentTime * 0.05;
+        if (p.y < 0) p.y = canvas.height;
+
+        ctx.fillStyle = "#82beff";
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+    });
+
+    requestAnimationFrame(animate);
+}
+
+animate();
