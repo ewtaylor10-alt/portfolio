@@ -4,83 +4,27 @@ body {
     color: white;
     overflow: hidden;
 
-    background: url("https://files.catbox.moe/7m1y7u.jpg") center/cover no-repeat;
+    /* NICE BLUE GRADIENT BACK */
+    background: linear-gradient(135deg, #003bff, #82beff);
 }
 
-/* LOADER */
-#loader {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: #000814;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-
-    animation: fadeOut 1s ease forwards;
-    animation-delay: 2s;
-}
-
-.loader-text {
-    font-family: 'Orbitron';
-    color: #82beff;
-    font-size: 20px;
-    animation: pulse 1s infinite alternate;
-}
-
-@keyframes fadeOut {
-    to { opacity: 0; visibility: hidden; }
-}
-
-@keyframes pulse {
-    from { opacity: 0.5; }
-    to { opacity: 1; }
-}
-
-/* BLUR */
+/* SMOOTH BLUR LAYER */
 body::before {
     content: "";
     position: fixed;
     width: 100%;
     height: 100%;
-    backdrop-filter: blur(30px);
-    background: rgba(0, 20, 60, 0.6);
+
+    backdrop-filter: blur(40px);
+    background: rgba(0, 30, 100, 0.4);
+
     z-index: -1;
-}
-
-/* NAVBAR */
-.navbar {
-    padding: 20px;
-    margin: 20px;
-    border-radius: 20px;
-    background: rgba(0,59,255,0.2);
-    backdrop-filter: blur(10px);
-
-    animation: slideDown 1s ease;
-}
-
-@keyframes slideDown {
-    from { transform: translateY(-50px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
-
-.logo {
-    font-family: 'Orbitron';
-    color: #82beff;
 }
 
 /* HERO */
 .hero {
     text-align: center;
     margin-top: 150px;
-
-    animation: fadeIn 1.5s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
 }
 
 .hero h2 {
@@ -88,9 +32,9 @@ body::before {
     font-family: 'Orbitron';
 }
 
-/* GLOW */
+/* GLOW TEXT */
 .glow {
-    background: linear-gradient(90deg, #003bff, #82beff);
+    background: linear-gradient(90deg, #ffffff, #82beff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
@@ -98,8 +42,8 @@ body::before {
 }
 
 @keyframes glowPulse {
-    from { text-shadow: 0 0 10px #003bff; }
-    to { text-shadow: 0 0 25px #82beff; }
+    from { text-shadow: 0 0 10px #82beff; }
+    to { text-shadow: 0 0 30px #003bff; }
 }
 
 /* PLAYER */
@@ -107,21 +51,28 @@ body::before {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 250px;
+    width: 260px;
 
-    background: rgba(0,59,255,0.2);
-    padding: 20px;
+    background: rgba(255,255,255,0.1);
+    padding: 15px;
     border-radius: 20px;
 
     backdrop-filter: blur(20px);
-    box-shadow: 0 0 40px #003bff;
-
-    animation: slideUp 1.2s ease;
+    box-shadow: 0 0 30px rgba(0,59,255,0.6);
 }
 
-@keyframes slideUp {
-    from { transform: translateY(50px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+/* COVER IMAGE */
+.cover {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 10px;
+}
+
+/* SONG NAME */
+#songName {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: #cce6ff;
 }
 
 /* BUTTONS */
@@ -139,6 +90,13 @@ body::before {
 
     background: linear-gradient(135deg, #003bff, #82beff);
     color: white;
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.controls button:hover {
+    transform: scale(1.1);
 }
 
 /* PROGRESS */
@@ -159,8 +117,8 @@ body::before {
 /* CURSOR */
 .cursor-glow {
     position: fixed;
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     border: 2px solid #82beff;
     border-radius: 50%;
     box-shadow: 0 0 10px #003bff, 0 0 20px #82beff;
