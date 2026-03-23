@@ -2,31 +2,19 @@ body {
     margin: 0;
     font-family: 'Inter', sans-serif;
     color: white;
+    overflow: hidden; /* ✅ REMOVES GRAY BAR */
 
-    /* ✅ REAL BACKGROUND IMAGE */
     background-image: url("6d734603-56e5-4f46-83e4-88f0aad1c974.png");
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
 }
 
-/* DARK OVERLAY */
-body::before {
-    content: "";
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.6);
-    z-index: -1;
-}
-
-/* NAVBAR */
+/* NAV */
 .navbar {
     padding: 20px 40px;
 }
 
 .logo {
-    font-weight: 600;
     text-shadow: 0 0 10px white;
 }
 
@@ -36,86 +24,17 @@ body::before {
     margin-top: 120px;
 }
 
-.hero h1 {
-    color: #aaa;
-    letter-spacing: 3px;
+/* CENTER BUTTON */
+.center-btn {
+    text-align: center;
+    margin-top: 40px;
 }
 
-.hero h2 {
-    font-size: 60px;
-    text-shadow: 0 0 15px white;
-}
-
-/* BUTTON */
-.main-btn {
-    margin-top: 20px;
-    padding: 12px 25px;
-    border-radius: 25px;
-    border: none;
-    background: white;
-    color: black;
-    cursor: pointer;
-    box-shadow: 0 0 15px white;
-}
-
-.main-btn:hover {
-    transform: scale(1.05);
-}
-
-/* PLAYER */
-.player {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 260px;
-
-    background: rgba(0,0,0,0.7);
-    padding: 20px;
-    border-radius: 20px;
-
-    border: 1px solid white;
-    box-shadow: 0 0 20px white;
-}
-
-/* COVER */
-.cover {
-    width: 100%;
-    border-radius: 10px;
-    box-shadow: 0 0 15px white;
-}
-
-/* CONTROLS */
-.controls {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
-
-.controls button {
-    border: none;
-    background: white;
-    color: black;
-    border-radius: 50%;
-    padding: 10px;
-    cursor: pointer;
-}
-
-/* PROGRESS */
-.progress-container {
-    height: 5px;
-    background: rgba(255,255,255,0.2);
-    margin: 10px 0;
-}
-
-#progress {
-    height: 100%;
-    background: white;
-}
-/* 🔥 ANIMATED GLOW BORDER */
+/* EMBED POSITION (LIKE YOUR PIC) */
 .embed {
-    position: absolute;
+    position: fixed;
     right: 60px;
-    top: 200px;
+    top: 140px;
 
     width: 260px;
     padding: 20px;
@@ -123,42 +42,40 @@ body::before {
     background: rgba(0,0,0,0.7);
     border-radius: 15px;
 
-    border-left: 4px solid white;
-
-    box-shadow: 0 0 15px white;
-    animation: glowBorder 2s infinite alternate;
+    box-shadow: 0 0 25px white;
+    animation: glow 2s infinite alternate;
 }
 
-@keyframes glowBorder {
-    from {
-        box-shadow: 0 0 10px white;
-    }
-    to {
-        box-shadow: 0 0 30px white, 0 0 60px white;
-    }
-}
-
-.embed-title {
+/* ICON HEADER */
+.embed-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     font-weight: 600;
-    margin-bottom: 10px;
 }
 
+.embed-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+}
+
+/* LINE */
 .embed-line {
     height: 1px;
     background: rgba(255,255,255,0.3);
-    margin-bottom: 10px;
+    margin: 10px 0;
 }
 
 /* JOIN BUTTON */
 .join {
-    position: absolute;
-    bottom: 60px;
+    position: fixed;
+    bottom: 40px;
     right: 60px;
 }
 
-/* CONTACT */
-.contact {
-    position: absolute;
-    left: 60px;
-    bottom: 60px;
+/* ANIMATION */
+@keyframes glow {
+    from { box-shadow: 0 0 10px white; }
+    to { box-shadow: 0 0 35px white; }
 }
