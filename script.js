@@ -3,7 +3,17 @@ const songs = [
     { file: "Dominic Fike - white keys - wurlighost (128k).mp3", name: "White Keys" },
     { file: "Britney Spears - Gimme More.mp3", name: "Gimme More" },
     { file: "RAYE - Escapism. feat. 070 Shake.mp3", name: "Escapism" },
-    { file: "SpotiDownloader.com - Champagne Coast - Blood Orange.mp3", name: "Champagne Coast" },
+
+    { file: "I Thought I Saw Your Face Today.mp3", name: "I Thought I Saw Your Face Today" },
+    { file: "Mac Miller - The Spins Lyrics.mp3", name: "The Spins" },
+    { file: "Supercut.mp3", name: "Supercut" },
+    { file: "back to friends - sombr - SoundLoadMate.com.mp3", name: "Back to Friends" },
+    { file: "Ocean Eyes - Billie Eilish.mp3", name: "Ocean Eyes" },
+    { file: "Tate McRae - exes (Audio).mp3", name: "Exes" },
+    { file: "Tate_McRae_-_Greedy.mp3", name: "Greedy" },
+    { file: "Sweater Weather- The Neighbourhood.mp3", name: "Sweater Weather" },
+    { file: "The Cranberries - Zombie (Alt. Version).mp3", name: "Zombie (Alt Version)" },
+
     { file: "Tate McRae - Sports Car.mp3", name: "Sports Car" },
     { file: "Tate McRae - TIT FOR TAT.mp3", name: "Tit For Tat" },
     { file: "The Kid LAROI - NIGHTS LIKE THIS (lyrics).mp3", name: "Nights Like This" }
