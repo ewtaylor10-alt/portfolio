@@ -9,10 +9,8 @@
 </head>
 <body>
 
-<!-- LOADER -->
-<div id="loader">
-    <div class="loader-ring"></div>
-</div>
+<!-- SIMPLE LOADER -->
+<div id="loader">Loading...</div>
 
 <!-- HERO -->
 <div class="hero">
@@ -22,33 +20,28 @@
 </div>
 
 <!-- PLAYER -->
-<div class="player" id="player">
+<div class="player">
 
     <img src="c0bba8165dbb9982fa17e300d66f8264.jpg" class="banner">
 
-    <div class="song-info">
-        <span id="songName">Loading...</span>
-    </div>
-
-    <canvas id="wave"></canvas>
+    <div class="song-info" id="songName">Loading...</div>
 
     <div class="progress-bar">
         <div id="progress"></div>
     </div>
 
     <div class="controls">
-        <button onclick="prevSong()">⏮</button>
-        <button id="playBtn" onclick="toggleMusic()">▶</button>
-        <button onclick="nextSong()">⏭</button>
-        <button onclick="shuffleToggle()">🔀</button>
+        <button id="prevBtn">⏮</button>
+        <button id="playBtn">▶</button>
+        <button id="nextBtn">⏭</button>
+        <button id="shuffleBtn">🔀</button>
     </div>
 
     <input type="range" id="volume" min="0" max="1" step="0.01">
+
 </div>
 
 <audio id="audio"></audio>
-
-<div id="cursor"></div>
 
 <script src="script.js"></script>
 </body>
