@@ -102,3 +102,18 @@ body {
     height: 100%;
     background: #82beff;
 }
+.cover {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 10px;
+
+    box-shadow:
+        0 0 15px #003bff,
+        0 0 30px #82beff;
+
+    transition: 0.3s;
+}
+
+.cover:hover {
+    transform: scale(1.03);
+}
