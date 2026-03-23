@@ -2,7 +2,7 @@ body {
     margin: 0;
     font-family: 'Inter', sans-serif;
     color: white;
-    overflow: hidden; /* ✅ REMOVES GRAY BAR */
+    overflow: hidden;
 
     background-image: url("6d734603-56e5-4f46-83e4-88f0aad1c974.png");
     background-size: cover;
@@ -24,13 +24,64 @@ body {
     margin-top: 120px;
 }
 
-/* CENTER BUTTON */
-.center-btn {
-    text-align: center;
-    margin-top: 40px;
+/* BUTTON */
+.main-btn {
+    padding: 15px 35px;
+    border-radius: 25px;
+    border: none;
+    background: white;
+    color: black;
+    box-shadow: 0 0 20px white;
+    cursor: pointer;
 }
 
-/* EMBED POSITION (LIKE YOUR PIC) */
+/* PLAYER (NEON) */
+.player {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 260px;
+
+    background: rgba(0,0,0,0.7);
+    padding: 20px;
+    border-radius: 20px;
+
+    border: 1px solid white;
+    box-shadow: 0 0 20px white;
+    animation: playerGlow 2s infinite alternate;
+}
+
+@keyframes playerGlow {
+    from { box-shadow: 0 0 10px white; }
+    to { box-shadow: 0 0 30px white; }
+}
+
+.cover {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 15px white;
+}
+
+.controls button {
+    background: white;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+}
+
+/* PROGRESS */
+.progress-container {
+    height: 5px;
+    background: rgba(255,255,255,0.2);
+    margin: 10px 0;
+}
+
+#progress {
+    background: white;
+    height: 100%;
+}
+
+/* EMBED */
 .embed {
     position: fixed;
     right: 60px;
@@ -46,12 +97,10 @@ body {
     animation: glow 2s infinite alternate;
 }
 
-/* ICON HEADER */
 .embed-header {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-weight: 600;
 }
 
 .embed-icon {
@@ -60,21 +109,29 @@ body {
     border-radius: 8px;
 }
 
-/* LINE */
 .embed-line {
     height: 1px;
     background: rgba(255,255,255,0.3);
     margin: 10px 0;
 }
 
-/* JOIN BUTTON */
-.join {
-    position: fixed;
-    bottom: 40px;
-    right: 60px;
+.embed-btn {
+    margin-top: 15px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background: white;
+    color: black;
+    cursor: pointer;
 }
 
-/* ANIMATION */
+/* BACK BUTTON */
+.center-btn {
+    text-align: center;
+    margin-top: 40px;
+}
+
 @keyframes glow {
     from { box-shadow: 0 0 10px white; }
     to { box-shadow: 0 0 35px white; }
