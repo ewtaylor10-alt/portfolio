@@ -1,8 +1,8 @@
 body {
     margin: 0;
-    font-family: 'Inter';
-    color: white;
     background: black;
+    color: white;
+    font-family: Inter;
     overflow: hidden;
 }
 
@@ -13,39 +13,53 @@ body {
     height: 100%;
     background: black;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
     z-index: 999;
 }
 
-.loader-circle {
-    width: 50px;
-    height: 50px;
+.loader-ring {
+    width: 60px;
+    height: 60px;
     border: 3px solid white;
     border-top: 3px solid transparent;
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
 
-@keyframes spin {
-    100% { transform: rotate(360deg); }
-}
+@keyframes spin { 100% { transform: rotate(360deg);} }
 
-/* GRID BACKGROUND */
-.grid {
+/* PARALLAX */
+.parallax {
     position: fixed;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-                      linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
-    background-size: 40px 40px;
-    animation: moveGrid 10s linear infinite;
+    overflow: hidden;
 }
 
-@keyframes moveGrid {
-    from { background-position: 0 0; }
-    to { background-position: 40px 40px; }
+.stars {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: url('https://i.imgur.com/8bKQX6k.png');
+    animation: moveStars 60s linear infinite;
+    opacity: 0.4;
+}
+
+@keyframes moveStars {
+    from { transform: translate(0,0);}
+    to { transform: translate(-500px,-500px);}
+}
+
+.grid {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
 }
 
 /* HERO */
@@ -54,15 +68,9 @@ body {
     margin-top: 120px;
 }
 
-.glow-text {
+.glow {
     font-family: Orbitron;
     font-size: 60px;
-    color: white;
-    text-shadow: 0 0 10px white, 0 0 30px white;
-}
-
-/* HOVER GLOW */
-.glow-text:hover {
     text-shadow: 0 0 20px white, 0 0 60px white;
 }
 
@@ -73,31 +81,24 @@ body {
     right: 20px;
     width: 280px;
     background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.2);
     border-radius: 15px;
+    backdrop-filter: blur(15px);
     padding: 15px;
-    backdrop-filter: blur(20px);
 }
 
 /* BANNER */
-.banner {
-    height: 80px;
-    overflow: hidden;
-    border-radius: 10px;
-}
-
 .banner img {
     width: 100%;
-    filter: grayscale(1) brightness(0.6);
+    border-radius: 10px;
+    filter: grayscale(1);
 }
 
 /* PROGRESS */
-.progress-container {
+.progress-bar {
     height: 5px;
     background: rgba(255,255,255,0.2);
     margin: 10px 0;
 }
-
 #progress {
     height: 100%;
     width: 0%;
@@ -109,19 +110,13 @@ body {
     display: flex;
     justify-content: space-between;
 }
-
 .controls button {
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: white;
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    border: none;
-    background: rgba(255,255,255,0.1);
-    color: white;
-}
-
-.controls button:hover {
-    background: white;
-    color: black;
 }
 
 /* CURSOR */
@@ -132,21 +127,12 @@ body {
     border: 2px solid white;
     border-radius: 50%;
     pointer-events: none;
-    transform: translate(-50%, -50%);
 }
-
-/* PARTICLES */
 .particle {
     position: fixed;
     width: 5px;
     height: 5px;
     background: white;
     border-radius: 50%;
-    pointer-events: none;
     opacity: 0.5;
-    animation: fade 0.5s linear;
-}
-
-@keyframes fade {
-    to { opacity: 0; transform: scale(2); }
 }
