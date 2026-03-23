@@ -1,19 +1,3 @@
-/* RESTORE SONG */
-window.addEventListener("load", () => {
-    const savedIndex = localStorage.getItem("songIndex");
-    const savedTime = localStorage.getItem("songTime");
-
-    if (savedIndex !== null) {
-        currentSong = parseInt(savedIndex);
-        audio.src = songs[currentSong].file;
-
-        audio.currentTime = savedTime || 0;
-        audio.play();
-
-        songName.innerText = songs[currentSong].name;
-        cover.src = "c0bba8165dbb9982fa17e300d66f8264.jpg";
-    }
-});
 const songs = [
     { file: "05 Let Down - Remastered.mp3", name: "Let Down" },
     { file: "Dominic Fike - white keys - wurlighost (128k).mp3", name: "White Keys" },
@@ -32,7 +16,19 @@ const playBtn = document.getElementById("playBtn");
 const songName = document.getElementById("songName");
 const progress = document.getElementById("progress");
 const cover = document.getElementById("cover");
-const volume = document.getElementById("volume");
+
+/* RESTORE */
+window.addEventListener("load", () => {
+    const savedIndex = localStorage.getItem("songIndex");
+    const savedTime = localStorage.getItem("songTime");
+
+    if (savedIndex !== null) {
+        currentSong = parseInt(savedIndex);
+        audio.src = songs[currentSong].file;
+        audio.currentTime = savedTime || 0;
+        audio.play();
+    }
+});
 
 /* PLAY */
 function playSong(index) {
@@ -40,46 +36,24 @@ function playSong(index) {
     audio.play();
 
     songName.innerText = songs[index].name;
-
-    /* ✅ FIXED COVER */
     cover.src = "c0bba8165dbb9982fa17e300d66f8264.jpg";
 
     playBtn.innerText = "⏸";
 }
 
-/* CONTROLS */
-function nextSong() {
-    currentSong = (currentSong + 1) % songs.length;
-    playSong(currentSong);
+function nextSong(){ currentSong=(currentSong+1)%songs.length; playSong(currentSong); }
+function prevSong(){ currentSong=(currentSong-1+songs.length)%songs.length; playSong(currentSong); }
+
+function toggleMusic(){
+    if(audio.paused) playSong(currentSong);
+    else { audio.pause(); playBtn.innerText="▶"; }
 }
 
-function prevSong() {
-    currentSong = (currentSong - 1 + songs.length) % songs.length;
-    playSong(currentSong);
-}
-
-function toggleMusic() {
-    if (audio.paused) {
-        playSong(currentSong);
-    } else {
-        audio.pause();
-        playBtn.innerText = "▶";
-    }
-}
-
-/* PROGRESS */
-audio.addEventListener("timeupdate", () => {
-    if (audio.duration) {
-        progress.style.width = (audio.currentTime / audio.duration) * 100 + "%";
+audio.addEventListener("timeupdate",()=>{
+    if(audio.duration){
+        progress.style.width=(audio.currentTime/audio.duration)*100+"%";
     }
 });
 
-/* VOLUME */
-volume.addEventListener("input", () => {
-    audio.volume = volume.value;
-});
-
-/* AUTOPLAY FIX */
-document.addEventListener("click", () => {
-    if (audio.paused) playSong(currentSong);
-}, { once: true });
+/* AUTOPLAY */
+document.addEventListener("click",()=>{ if(audio.paused) playSong(currentSong); },{once:true});
