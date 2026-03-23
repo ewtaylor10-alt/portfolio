@@ -2,8 +2,9 @@ body {
     margin: 0;
     font-family: 'Inter', sans-serif;
     color: white;
+    cursor: none;
 
-    background: url("6d734603-56e5-4f46-83e4-88f0aad1c974.png") center/cover no-repeat;
+    background: url("6d734603-56e5-4f46-83e4-88f0aad1c974.png") center/cover no-repeat fixed;
 }
 
 /* BLUR */
@@ -13,18 +14,16 @@ body::before {
     width: 100%;
     height: 100%;
     background: rgba(0,0,0,0.75);
-    backdrop-filter: blur(25px);
+    backdrop-filter: blur(20px);
     z-index: -1;
 }
 
-/* NAVBAR */
+/* NAV */
 .navbar {
     padding: 20px 40px;
 }
 
 .logo {
-    font-weight: 600;
-    letter-spacing: 1px;
     text-shadow: 0 0 10px white;
 }
 
@@ -34,23 +33,14 @@ body::before {
     margin-top: 120px;
 }
 
-.hero h1 {
-    font-weight: 300;
-    letter-spacing: 3px;
-    color: #ccc;
-}
-
-.hero h2 {
+.glow-text {
     font-size: 60px;
-    font-weight: 600;
-
-    text-shadow:
-        0 0 10px white,
-        0 0 30px white;
+    animation: glowPulse 2s infinite alternate;
 }
 
-.hero p {
-    color: #aaa;
+@keyframes glowPulse {
+    from { text-shadow: 0 0 10px white; }
+    to { text-shadow: 0 0 30px white, 0 0 60px white; }
 }
 
 /* BUTTON */
@@ -59,60 +49,15 @@ body::before {
     padding: 12px 25px;
     border-radius: 25px;
     border: none;
-
     background: white;
     color: black;
-
-    font-weight: 500;
-
-    box-shadow:
-        0 0 10px white,
-        0 0 30px white;
-
-    cursor: pointer;
+    box-shadow: 0 0 20px white;
     transition: 0.3s;
 }
 
 .main-btn:hover {
-    transform: scale(1.05);
-}
-
-/* SECTION */
-.section {
-    padding: 80px 20px;
-    text-align: center;
-}
-
-/* CARDS */
-.cards {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.img-card {
-    width: 200px;
-    height: 150px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 15px;
-    border: 2px solid white;
-
-    font-size: 14px;
-
-    box-shadow:
-        0 0 10px white,
-        0 0 20px white;
-
-    transition: 0.3s;
-}
-
-.img-card:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
+    box-shadow: 0 0 40px white;
 }
 
 /* PLAYER */
@@ -120,55 +65,94 @@ body::before {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 250px;
+    width: 260px;
 
-    background: rgba(0,0,0,0.6);
+    background: rgba(0,0,0,0.7);
     padding: 20px;
     border-radius: 20px;
 
-    border: 1px solid white;
-    box-shadow: 0 0 20px white;
+    box-shadow: 0 0 30px white;
 }
 
 /* COVER */
 .cover {
     width: 100%;
     border-radius: 10px;
-
-    box-shadow:
-        0 0 10px white,
-        0 0 20px white;
+    box-shadow: 0 0 20px white;
 }
 
-/* BUTTONS */
-.controls {
+/* VISUALIZER */
+.visualizer {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 5px;
+    margin: 10px 0;
 }
 
-.controls button {
-    border: none;
+.visualizer span {
+    width: 5px;
+    height: 20px;
     background: white;
-    color: black;
+    animation: bounce 1s infinite ease-in-out;
+}
+
+.visualizer span:nth-child(2){ animation-delay:0.1s;}
+.visualizer span:nth-child(3){ animation-delay:0.2s;}
+.visualizer span:nth-child(4){ animation-delay:0.3s;}
+.visualizer span:nth-child(5){ animation-delay:0.4s;}
+
+@keyframes bounce {
+    0%,100% { height: 10px; }
+    50% { height: 30px; }
+}
+
+/* CONTROLS */
+.controls button {
+    background: white;
+    border: none;
     border-radius: 50%;
     padding: 10px;
-    cursor: pointer;
+    transition: 0.2s;
+}
+
+.controls button:hover {
+    transform: scale(1.2);
 }
 
 /* PROGRESS */
 .progress-container {
     height: 5px;
     background: rgba(255,255,255,0.2);
-    margin: 10px 0;
 }
 
 #progress {
-    height: 100%;
     background: white;
+    height: 100%;
 }
 
-/* VOLUME */
-#volume {
-    width: 100%;
+/* 🔥 CUSTOM CURSOR */
+.cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border: 2px solid white;
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 10px white,
+        0 0 20px white;
+
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+}
+
+/* TRAIL */
+.trail {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.3;
+    pointer-events: none;
 }
