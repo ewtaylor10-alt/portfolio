@@ -1,53 +1,59 @@
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: radial-gradient(circle at top, #0a0f1f, #05070f);
+    font-family: Arial;
     color: white;
     text-align: center;
+
+    background: linear-gradient(135deg, #0a001f, #120033, #1a004d);
 }
 
-/* center content */
+/* center */
 .container {
     margin-top: 150px;
 }
 
-/* main title */
+/* title */
 h1 {
     font-size: 60px;
-    margin: 0;
-    color: #4da6ff;
-    text-shadow: 0 0 20px #4da6ff;
+    color: #a855f7;
+    text-shadow: 0 0 25px #a855f7;
 }
 
 /* subtitle */
 h2 {
     font-size: 40px;
-    margin: 10px 0;
-    background: linear-gradient(90deg, #4da6ff, #00e0ff);
+    background: linear-gradient(90deg, #a855f7, #3b82f6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-/* description */
+/* text */
 p {
-    color: #aaa;
-    max-width: 500px;
-    margin: auto;
+    color: #bbb;
 }
 
-/* button */
-button {
-    margin-top: 30px;
-    padding: 12px 25px;
+/* player box */
+.player {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(20, 0, 40, 0.8);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px #a855f7;
+}
+
+/* buttons */
+.controls button {
+    margin: 5px;
+    padding: 10px;
     border: none;
-    border-radius: 20px;
-    background: #4da6ff;
+    border-radius: 50%;
+    background: #3b82f6;
     color: white;
-    font-size: 16px;
     cursor: pointer;
-    box-shadow: 0 0 15px #4da6ff;
 }
 
-button:hover {
-    background: #3399ff;
+.controls button:hover {
+    background: #2563eb;
 }
