@@ -12,42 +12,32 @@
 <!-- LOADER -->
 <div id="loader">
     <div class="loader-circle"></div>
-    <p>LOADING SYSTEM...</p>
+    <p>Loading...</p>
 </div>
 
-<!-- ACCENTS -->
-<div class="line l1"></div>
-<div class="line l2"></div>
-<div class="bubble b1"></div>
-<div class="bubble b2"></div>
+<!-- GRID BACKGROUND -->
+<div class="grid"></div>
 
 <!-- HERO -->
 <div class="hero">
     <h1>WELCOME TO</h1>
-    <h2 class="glow">hnguyguys' Portfolio</h2>
+    <h2 class="glow-text">hnguyguys' Portfolio</h2>
     <p>Clean systems. Creative design. Digital energy.</p>
 </div>
 
+<!-- PLAYER -->
 <div class="player">
 
-    <!-- BANNER IMAGE -->
     <div class="banner">
         <img src="c0bba8165dbb9982fa17e300d66f8264.jpg">
     </div>
 
-    <div class="now-playing">
-        <div class="song-info">
-            <div id="songName">Loading...</div>
-            <div class="artist">Now Playing</div>
-        </div>
+    <div class="song-info">
+        <div id="songName">Loading...</div>
+        <div class="artist">Now Playing</div>
     </div>
 
     <canvas id="waveform"></canvas>
-
-    <div class="time">
-        <span id="current">0:00</span>
-        <span id="duration">0:00</span>
-    </div>
 
     <div class="progress-container">
         <div id="progress"></div>
@@ -63,5 +53,11 @@
     <input type="range" id="volume" min="0" max="1" step="0.01">
 </div>
 
+<audio id="bgMusic"></audio>
+
 <!-- CURSOR -->
-<div class="cursor-glow" id="cursor"></div>
+<div id="cursor"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
