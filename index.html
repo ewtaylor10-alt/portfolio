@@ -54,3 +54,13 @@ function goToServer() {
 
 </body>
 </html>
+
+<script src="script.js"></script>
+
+<script>
+function goToServer() {
+    localStorage.setItem("songIndex", currentSong);
+    localStorage.setItem("songTime", audio.currentTime);
+    window.location.href = "server.html";
+}
+</script>
