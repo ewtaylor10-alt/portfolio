@@ -24,43 +24,46 @@ function playSong(index) {
     audio.play();
 
     songName.innerText = songs[index].name;
+
+    /* ✅ FIXED COVER */
     cover.src = "c0bba8165dbb9982fa17e300d66f8264.jpg";
 
     playBtn.innerText = "⏸";
 }
 
-function nextSong(){ currentSong=(currentSong+1)%songs.length; playSong(currentSong); }
-function prevSong(){ currentSong=(currentSong-1+songs.length)%songs.length; playSong(currentSong); }
-
-function toggleMusic(){
-    if(audio.paused) playSong(currentSong);
-    else { audio.pause(); playBtn.innerText="▶"; }
+/* CONTROLS */
+function nextSong() {
+    currentSong = (currentSong + 1) % songs.length;
+    playSong(currentSong);
 }
 
-audio.addEventListener("timeupdate",()=>{
-    if(audio.duration){
-        progress.style.width=(audio.currentTime/audio.duration)*100+"%";
+function prevSong() {
+    currentSong = (currentSong - 1 + songs.length) % songs.length;
+    playSong(currentSong);
+}
+
+function toggleMusic() {
+    if (audio.paused) {
+        playSong(currentSong);
+    } else {
+        audio.pause();
+        playBtn.innerText = "▶";
+    }
+}
+
+/* PROGRESS */
+audio.addEventListener("timeupdate", () => {
+    if (audio.duration) {
+        progress.style.width = (audio.currentTime / audio.duration) * 100 + "%";
     }
 });
 
-volume.addEventListener("input",()=> audio.volume=volume.value);
-
-/* AUTOPLAY */
-document.addEventListener("click",()=>{ if(audio.paused) playSong(currentSong); },{once:true});
-
-/* CURSOR + TRAIL */
-const cursor = document.getElementById("cursor");
-
-document.addEventListener("mousemove", e => {
-    cursor.style.left = e.clientX + "px";
-    cursor.style.top = e.clientY + "px";
-
-    const trail = document.createElement("div");
-    trail.className = "trail";
-    trail.style.left = e.clientX + "px";
-    trail.style.top = e.clientY + "px";
-
-    document.body.appendChild(trail);
-
-    setTimeout(()=> trail.remove(), 300);
+/* VOLUME */
+volume.addEventListener("input", () => {
+    audio.volume = volume.value;
 });
+
+/* AUTOPLAY FIX */
+document.addEventListener("click", () => {
+    if (audio.paused) playSong(currentSong);
+}, { once: true });
